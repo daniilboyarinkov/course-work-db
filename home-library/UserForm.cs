@@ -42,9 +42,11 @@ namespace home_library
             updateStudents();
         }
 
-        private void updateStudents(string q = "SELECT DISTINCT books.genre, books.title, authors.fio, books.publication_year " +
+        private void updateStudents(string q = "SELECT books.genre, books.title, authors.fio, books.publication_year " +
                                                 "FROM books, authors, library " +
-                                                "WHERE books.author = authors.author_id AND library.book = books.book_id AND library.taken = false")
+                                                "WHERE books.author = authors.author_id AND library.book = books.book_id " +
+                                                "GROUP BY books.title, authors.fio, books.publication_year, books.genre " +
+                                                "HAVING SUM(library.taken = true) = 0")
         {
             string query = q;
             OleDbCommand command = new OleDbCommand(query, _connection);
