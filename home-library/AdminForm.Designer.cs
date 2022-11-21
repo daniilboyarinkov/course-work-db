@@ -33,18 +33,20 @@
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(222, 106);
+            this.textBox1.Location = new System.Drawing.Point(137, 66);
+            this.textBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(200, 39);
+            this.textBox1.Size = new System.Drawing.Size(125, 27);
             this.textBox1.TabIndex = 0;
             this.textBox1.Text = "AdminForm";
             // 
             // AdminForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(13F, 32F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(492, 281);
             this.Controls.Add(this.textBox1);
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "AdminForm";
             this.Text = "AdminForm";
             this.ResumeLayout(false);

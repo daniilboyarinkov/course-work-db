@@ -1,9 +1,11 @@
 using System.Data.OleDb;
 
 namespace home_library
-{
+{  
+
     public partial class StartForm : Form
     {
+
         // private static readonly string _connectString = "Provider=Microsoft.Jet.OLEDB.4.0;Data Source=DB.mdb;";
         private static readonly string _connectString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=DB.mdb;";
         private readonly OleDbConnection _connection;
@@ -22,17 +24,32 @@ namespace home_library
             // закрываем соединение с бд
             _connection.Close();
         }
-        private void UserFormRedirect_Click(object sender, EventArgs e)
+
+        private void UserButton_Click(object sender, EventArgs e)
         {
-            UserForm userForm = new();
-            // переводим основное окно в состояние невидимости
-            this.Visible = false;
-            userForm.ShowDialog();
-            // по закрытию дочернего окна закрываем и основное
-            Close();
+            string query = "SELECT reader_name FROM readers";
+            OleDbCommand command = new OleDbCommand(query, _connection);
+            OleDbDataReader reader = command.ExecuteReader();
+
+            while (reader.Read())
+            {
+                if (UserName.Text == reader[0].ToString())
+                {
+                    UserForm userForm = new(UserName.Text);
+                    // переводим основное окно в состояние невидимости
+                    this.Visible = false;
+                    userForm.ShowDialog();
+                    // по закрытию дочернего окна закрываем и основное
+                    Close();
+                }
+            }
+
+            reader.Close();
+
+            
         }
 
-        private void AdminFormRedirect_Click(object sender, EventArgs e)
+        private void AdminButton_Click(object sender, EventArgs e)
         {
             AdminForm adminForm = new();
             // переводим основное окно в состояние невидимости
@@ -41,5 +58,6 @@ namespace home_library
             // по закрытию дочернего окна закрываем и основное
             Close();
         }
+        
     }
 }

@@ -437,19 +437,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\danii\\.nuget\\packages\\": {}
+    "C:\\Users\\ilya-\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "P:\\course-work-db\\home-library\\home-library.csproj",
+      "projectUniqueName": "C:\\Users\\ilya-\\Source\\Repos\\course-work-db\\home-library\\home-library.csproj",
       "projectName": "home-library",
-      "projectPath": "P:\\course-work-db\\home-library\\home-library.csproj",
-      "packagesPath": "C:\\Users\\danii\\.nuget\\packages\\",
-      "outputPath": "P:\\course-work-db\\home-library\\obj\\",
+      "projectPath": "C:\\Users\\ilya-\\Source\\Repos\\course-work-db\\home-library\\home-library.csproj",
+      "packagesPath": "C:\\Users\\ilya-\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\ilya-\\Source\\Repos\\course-work-db\\home-library\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\danii\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\ilya-\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -499,7 +499,7 @@
             "privateAssets": "none"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.401\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.100\\RuntimeIdentifierGraph.json"
       }
     }
   }
