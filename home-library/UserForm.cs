@@ -31,6 +31,8 @@ namespace home_library
             if (CheckGenre())
             {
                 DataGridUser.Columns.Add("column4", "Жанр");
+                label2.Visible = true;
+                radioButton1.Visible = true;
             }
             else
             {
@@ -42,7 +44,7 @@ namespace home_library
             updateStudents();
         }
 
-        private void updateStudents(string q = "SELECT books.genre, books.title, authors.fio, books.publication_year " +
+        private void updateStudents(string q = "SELECT books.title, authors.fio, books.publication_year, books.genre " +
                                                 "FROM books, authors, library " +
                                                 "WHERE books.author = authors.author_id AND library.book = books.book_id " +
                                                 "GROUP BY books.title, authors.fio, books.publication_year, books.genre " +
@@ -56,10 +58,14 @@ namespace home_library
 
             while (reader.Read())
             {
-                var genre = reader[0] ?? "";
-                var name = reader[1];
-                var author = reader[2];
-                var year = reader[3];
+                string genre = "";
+                if (reader.FieldCount == 4)
+                {                    
+                    genre = reader[3].ToString() ?? "";
+                }
+                var name = reader[0];
+                var author = reader[1];
+                var year = reader[2];
                 if (CheckGenre()) DataGridUser.Rows.Add(genre, name, author, year);
                 else DataGridUser.Rows.Add(name, author, year);
             }
@@ -116,8 +122,10 @@ namespace home_library
                 fio = DataGridUser.SelectedRows[0].Cells[1].Value.ToString() ?? "";
                 publication = DataGridUser.SelectedRows[0].Cells[2].Value.ToString() ?? "";
             }
-            string query = "INSERT INTO library (book, reader, return_date, taken) SELECT DISTINCT books.book_id, readers.reader_id, DateAdd('d', 14, DATE()), true " +
-                $"FROM books, readers WHERE books.title = '{title}' AND books.publication_year = {Convert.ToInt32(publication)} AND readers.reader_name = '{name}'";
+            string query = "INSERT INTO library (book, reader, return_date, taken) " +
+                "SELECT DISTINCT books.book_id, readers.reader_id, DateAdd('d', 14, DATE()), true " +
+                $"FROM books, readers WHERE books.title = '{title}' " +
+                $"AND books.publication_year = {Convert.ToInt32(publication)} AND readers.reader_name = '{name}'";
             
             OleDbCommand command = new OleDbCommand(query, _connection);
             command.ExecuteNonQuery();

@@ -39,8 +39,7 @@ namespace home_library
                     // переводим основное окно в состояние невидимости
                     this.Visible = false;
                     userForm.ShowDialog();
-                    // по закрытию дочернего окна закрываем и основное
-                    Close();
+                    this.Visible = true;
                 }
             }
 

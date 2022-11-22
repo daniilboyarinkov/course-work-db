@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\ilya-\\Source\\Repos\\course-work-db\\home-library\\home-library.csproj": {}
+    "C:\\Users\\ilya-\\source\\repos\\course-work-db\\home-library\\home-library.csproj": {}
   },
   "projects": {
-    "C:\\Users\\ilya-\\Source\\Repos\\course-work-db\\home-library\\home-library.csproj": {
+    "C:\\Users\\ilya-\\source\\repos\\course-work-db\\home-library\\home-library.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\ilya-\\Source\\Repos\\course-work-db\\home-library\\home-library.csproj",
+        "projectUniqueName": "C:\\Users\\ilya-\\source\\repos\\course-work-db\\home-library\\home-library.csproj",
         "projectName": "home-library",
-        "projectPath": "C:\\Users\\ilya-\\Source\\Repos\\course-work-db\\home-library\\home-library.csproj",
+        "projectPath": "C:\\Users\\ilya-\\source\\repos\\course-work-db\\home-library\\home-library.csproj",
         "packagesPath": "C:\\Users\\ilya-\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\ilya-\\Source\\Repos\\course-work-db\\home-library\\obj\\",
+        "outputPath": "C:\\Users\\ilya-\\source\\repos\\course-work-db\\home-library\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\ilya-\\AppData\\Roaming\\NuGet\\NuGet.Config",
