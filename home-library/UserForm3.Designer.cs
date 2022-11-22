@@ -100,7 +100,6 @@
             this.Controls.Add(this.DataGridUser);
             this.Name = "UserForm3";
             this.Text = "UserForm3";
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.UserForm3_FormClosing);
             ((System.ComponentModel.ISupportInitialize)(this.DataGridUser)).EndInit();
             this.ResumeLayout(false);
 

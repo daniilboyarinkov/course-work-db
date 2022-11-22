@@ -35,7 +35,7 @@ namespace home_library
             {
                 if (UserName.Text == reader[0].ToString())
                 {
-                    UserForm userForm = new(UserName.Text);
+                    UserForm userForm = new(UserName.Text, _connection);
                     // переводим основное окно в состояние невидимости
                     this.Visible = false;
                     userForm.ShowDialog();

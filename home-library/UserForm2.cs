@@ -14,18 +14,17 @@ namespace home_library
     public partial class UserForm2 : Form
     {
         // private static readonly string _connectString = "Provider=Microsoft.Jet.OLEDB.4.0;Data Source=DB.mdb;";
-        private static readonly string _connectString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=DB.mdb;";
+        //private static readonly string _connectString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=DB.mdb;";
         private readonly OleDbConnection _connection;
         public string name;
-        public UserForm2(string name)
+        public UserForm2(string name, OleDbConnection connect)
         {
             InitializeComponent();
 
             this.name = name;
 
             // открываем соединение с бд
-            _connection = new OleDbConnection(_connectString);
-            _connection.Open();
+            _connection = connect;
 
             if (CheckGenre())
             {
@@ -35,12 +34,20 @@ namespace home_library
 
             updateStudents();
         }
-        private void updateStudents(string q = "SELECT books.genre, books.title, authors.fio, books.publication_year, library.take_date, library.return_date " +
-                                                "FROM books, authors, library, readers " +
-                                                "WHERE library.book = books.book_id AND books.author = authors.author_id AND library.reader = readers.reader_id AND library.taken = true AND readers.reader_name = ")
+        //private void updateStudents(string q = "SELECT books.genre, books.title, authors.fio, books.publication_year, library.take_date, library.return_date " +
+        //                                        "FROM books, authors, library, readers " +
+        //                                        "WHERE library.book = books.book_id AND books.author = authors.author_id AND library.reader = readers.reader_id AND library.taken = true AND readers.reader_name = ")
+        //{
+        private void updateStudents(string q = "SELECT books.title, authors.fio, books.publication_year, library.take_date, library.return_date " +
+            "FROM readers " +
+            "INNER JOIN ((authors " +
+            "INNER JOIN books ON authors.author_id = books.author) " +
+            "INNER JOIN library ON books.book_id = library.book) " +
+            "ON readers.reader_id = library.reader " +
+            "WHERE (((library.taken)=True)) AND (readers.reader_name) = ")
         {
 
-            string query = q + $"'{name}'";
+            string query = q + $"'{name}';";
             OleDbCommand command = new OleDbCommand(query, _connection);
             OleDbDataReader reader = command.ExecuteReader();
 
@@ -48,13 +55,12 @@ namespace home_library
 
             while (reader.Read())
             {
-                var genre = reader[0] ?? "";
-                var name = reader[1];
-                var author = reader[2];
-                var year = reader[3];
-                var take = Convert.ToDateTime(reader[4]).ToShortDateString();
-                var returnn = Convert.ToDateTime(reader[5]).ToShortDateString();
-                if (CheckGenre()) DataGridUser.Rows.Add(genre, name, author, year, take, returnn);
+                var name = reader[0];
+                var author = reader[1];
+                var year = reader[2];
+                var take = Convert.ToDateTime(reader[3]).ToShortDateString();
+                var returnn = Convert.ToDateTime(reader[4]).ToShortDateString();
+                if (CheckGenre()) DataGridUser.Rows.Add(name, author, year, take, returnn);
                 else DataGridUser.Rows.Add(name, author, year, take, returnn);
             }
 
@@ -75,12 +81,6 @@ namespace home_library
                 return false;
             }
         }
-
-        private void UserForm2_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            _connection.Close();
-        }
-
         private void GetBackBook_Click(object sender, EventArgs e)
         {
             string title = "";

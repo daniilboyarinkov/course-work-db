@@ -14,18 +14,17 @@ namespace home_library
     public partial class UserForm3: Form
     {
         // private static readonly string _connectString = "Provider=Microsoft.Jet.OLEDB.4.0;Data Source=DB.mdb;";
-        private static readonly string _connectString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=DB.mdb;";
+        //private static readonly string _connectString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=DB.mdb;";
         private readonly OleDbConnection _connection;
         public string name;
-        public UserForm3(string name)
+        public UserForm3(string name, OleDbConnection connect)
         {
             InitializeComponent();
 
             this.name = name;
 
             // открываем соединение с бд
-            _connection = new OleDbConnection(_connectString);
-            _connection.Open();
+            _connection = connect;
 
             if (CheckGenre())
             {
@@ -42,13 +41,13 @@ namespace home_library
         //                                        "AND library.reader = readers.reader_id " +
         //                                        "AND library.taken = false " +
         //                                        "AND readers.reader_name = ")
-        private void updateStudents(string q = "SELECT books.title, authors.fio, books.publication_year, library.take_date, library.return_date, library.taken " +
+        private void updateStudents(string q = "SELECT books.title, authors.fio, books.publication_year, library.take_date, library.taken " +
             "FROM readers INNER JOIN ((authors INNER JOIN books ON authors.author_id = books.author) " +
             "INNER JOIN library ON books.book_id = library.book) ON readers.reader_id = library.reader " +
             "WHERE (((readers.reader_name)= ")
         {
 
-            string query = q + $"'{name}'));";
+            string query = q + $"'{name}')) ORDER BY library.take_date;";
             OleDbCommand command = new OleDbCommand(query, _connection);
             OleDbDataReader reader = command.ExecuteReader();
 
@@ -60,9 +59,9 @@ namespace home_library
                 var author = reader[1];
                 var year = reader[2];
                 var take = Convert.ToDateTime(reader[3]).ToShortDateString();
-                var returnn = Convert.ToDateTime(reader[4]).ToShortDateString();
-                if (CheckGenre()) DataGridUser.Rows.Add(name, author, year, take, returnn);
-                else DataGridUser.Rows.Add(name, author, year, take, returnn);
+                string returned = Convert.ToBoolean(reader[4]) == true ? ("Нет") : ("Да") ;
+                if (CheckGenre()) DataGridUser.Rows.Add(name, author, year, take, returned);
+                else DataGridUser.Rows.Add(name, author, year, take, returned);
             }
 
             reader.Close();
@@ -80,11 +79,6 @@ namespace home_library
             {
                 return false;
             }
-        }
-
-        private void UserForm3_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            _connection.Close();
         }
     }
 }
