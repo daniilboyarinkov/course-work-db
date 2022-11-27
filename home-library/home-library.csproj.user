@@ -10,6 +10,9 @@
     <Compile Update="AdminFormGenre2.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="AdminFormUserGetReturn.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="AdminFormUsers.cs">
       <SubType>Form</SubType>
     </Compile>
