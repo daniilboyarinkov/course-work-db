@@ -50,12 +50,12 @@ namespace home_library
 
         private void AdminButton_Click(object sender, EventArgs e)
         {
-            AdminForm adminForm = new();
+            AdminForm adminForm = new(_connection);
             // переводим основное окно в состояние невидимости
             this.Visible = false;
             adminForm.ShowDialog();
             // по закрытию дочернего окна закрываем и основное
-            Close();
+            this.Visible=true;
         }
         
     }
