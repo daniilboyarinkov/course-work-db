@@ -69,3 +69,5 @@ C:\Users\ilya-\Source\Repos\course-work-db\home-library\obj\Debug\net6.0-windows
 C:\Users\ilya-\Source\Repos\course-work-db\home-library\obj\Debug\net6.0-windows\home_library.UserForm2.resources
 C:\Users\ilya-\Source\Repos\course-work-db\home-library\obj\Debug\net6.0-windows\home_library.UserForm3.resources
 C:\Users\ilya-\source\repos\course-work-db\home-library\obj\Debug\net6.0-windows\home_library.AdminFormGenre.resources
+C:\Users\ilya-\source\repos\course-work-db\home-library\obj\Debug\net6.0-windows\home_library.AdminFormGenre2.resources
+C:\Users\ilya-\source\repos\course-work-db\home-library\obj\Debug\net6.0-windows\home_library.AdminFormUsers.resources
