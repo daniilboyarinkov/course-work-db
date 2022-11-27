@@ -97,11 +97,11 @@
             // 
             this.GetBackBook.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.GetBackBook.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.GetBackBook.Location = new System.Drawing.Point(315, 363);
+            this.GetBackBook.Location = new System.Drawing.Point(231, 363);
             this.GetBackBook.Name = "GetBackBook";
-            this.GetBackBook.Size = new System.Drawing.Size(128, 41);
+            this.GetBackBook.Size = new System.Drawing.Size(317, 41);
             this.GetBackBook.TabIndex = 3;
-            this.GetBackBook.Text = "Вернуть книгу";
+            this.GetBackBook.Text = "Книга поставлена на полку";
             this.GetBackBook.UseVisualStyleBackColor = true;
             this.GetBackBook.Click += new System.EventHandler(this.GetBackBook_Click);
             // 
