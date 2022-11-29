@@ -101,7 +101,7 @@
             this.GetBackBook.Name = "GetBackBook";
             this.GetBackBook.Size = new System.Drawing.Size(317, 41);
             this.GetBackBook.TabIndex = 3;
-            this.GetBackBook.Text = "Книга поставлена на полку";
+            this.GetBackBook.Text = "Возвращена";
             this.GetBackBook.UseVisualStyleBackColor = true;
             this.GetBackBook.Click += new System.EventHandler(this.GetBackBook_Click);
             // 

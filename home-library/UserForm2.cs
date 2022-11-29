@@ -89,8 +89,35 @@ namespace home_library
         }
         private void GetBackBook_Click(object sender, EventArgs e)
         {
-            //уведомлении на почту о том, что книга поставлена физически на полку в библиотеке
-            if(DataGridUser.Rows.Count > 1) DataGridUser.Rows.RemoveAt(DataGridUser.SelectedRows[0].Index);
+            string title = "";
+            string fio = "";
+            string publication = "";
+            string[] take_date = new string[3];
+            if (CheckGenre())
+            {
+                title = DataGridUser.SelectedRows[0].Cells[1].Value.ToString() ?? "";
+                fio = DataGridUser.SelectedRows[0].Cells[2].Value.ToString() ?? "";
+                publication = DataGridUser.SelectedRows[0].Cells[3].Value.ToString() ?? "";
+                take_date = Convert.ToDateTime(DataGridUser.SelectedRows[0].Cells[4].Value.ToString()).ToShortDateString().Split('.');
+
+            }
+            else
+            {
+                title = DataGridUser.SelectedRows[0].Cells[0].Value.ToString() ?? "";
+                fio = DataGridUser.SelectedRows[0].Cells[1].Value.ToString() ?? "";
+                publication = DataGridUser.SelectedRows[0].Cells[2].Value.ToString() ?? "";
+                take_date = Convert.ToDateTime(DataGridUser.SelectedRows[0].Cells[3].Value.ToString()).ToShortDateString().Split('.');
+            }
+            string query = $"UPDATE library, books, authors SET library.taken = false, library.return_date = DATE() " +
+                $"WHERE books.title = '{title}' " +
+                $"AND books.publication_year = {Convert.ToInt32(publication)} " +
+                $"AND authors.fio = '{fio}' " +
+                $"AND library.take_date = #" + take_date[2] + "/" + take_date[1] + "/" + take_date[0] + "# " +
+                $"AND books.book_id = library.book " +
+                $"AND books.author = authors.author_id";
+            DataGridUser.Rows.RemoveAt(DataGridUser.SelectedRows[0].Index);
+            OleDbCommand command = new OleDbCommand(query, _connection);
+            command.ExecuteNonQuery();
         }
     }
 }

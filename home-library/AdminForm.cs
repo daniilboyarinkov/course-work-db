@@ -87,5 +87,23 @@ namespace home_library
             AdminFormUserGetReturn getreturnUser = new AdminFormUserGetReturn(_connection, this.UserGetBack.Text);
             getreturnUser.ShowDialog();
         }
+
+        private void Change_Click(object sender, EventArgs e)
+        {
+            AdminChangeUser changeUser;
+            AdminChangeGenre changeGenre;
+            var CheckedButton = groupBox1.Controls.OfType<RadioButton>().FirstOrDefault(r => r.Checked);
+            switch (CheckedButton?.Text)
+            {
+                case "Жанр":
+                    changeGenre = new AdminChangeGenre(_connection);
+                    changeGenre.ShowDialog();
+                    break;
+                case "Пользователь":
+                    changeUser = new AdminChangeUser(_connection);
+                    changeUser.ShowDialog();
+                    break;
+            }
+        }
     }
 }

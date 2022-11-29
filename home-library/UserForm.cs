@@ -103,8 +103,30 @@ namespace home_library
 
         private void GetBook_Click(object sender, EventArgs e)
         {
-            //возможное информировнаие через почту о бронировании книги
-            if (DataGridUser.Rows.Count > 1) DataGridUser.Rows.RemoveAt(DataGridUser.SelectedRows[0].Index);
+            string title = "";
+            string fio = "";
+            string publication = "";
+            if (CheckGenre())
+            {
+                title = DataGridUser.SelectedRows[0].Cells[1].Value.ToString() ?? "";
+                fio = DataGridUser.SelectedRows[0].Cells[2].Value.ToString() ?? "";
+                publication = DataGridUser.SelectedRows[0].Cells[3].Value.ToString() ?? "";
+            }
+            else
+            {
+                title = DataGridUser.SelectedRows[0].Cells[0].Value.ToString() ?? "";
+                fio = DataGridUser.SelectedRows[0].Cells[1].Value.ToString() ?? "";
+                publication = DataGridUser.SelectedRows[0].Cells[2].Value.ToString() ?? "";
+            }
+            string query = "INSERT INTO library (book, reader, take_date, return_date, taken) " +
+                "SELECT DISTINCT books.book_id, readers.reader_id, DATE(), DateAdd('d', 14, DATE()), true " +
+                $"FROM books, readers WHERE books.title = '{title}' " +
+                $"AND books.publication_year = {Convert.ToInt32(publication)} AND readers.reader_name = '{name}'";
+
+            OleDbCommand command = new OleDbCommand(query, _connection);
+            command.ExecuteNonQuery();
+
+            DataGridUser.Rows.RemoveAt(DataGridUser.SelectedRows[0].Index);
         }
     }
 }

@@ -73,3 +73,5 @@ C:\Users\ilya-\source\repos\course-work-db\home-library\obj\Debug\net6.0-windows
 C:\Users\ilya-\source\repos\course-work-db\home-library\obj\Debug\net6.0-windows\home_library.AdminFormUsers.resources
 C:\Users\ilya-\source\repos\course-work-db\home-library\obj\Debug\net6.0-windows\home_library.AdminFormUserGetReturn.resources
 C:\Users\ilya-\source\repos\course-work-db\home-library\obj\Debug\net6.0-windows\home_library.Properties.Resources.resources
+C:\Users\ilya-\source\repos\course-work-db\home-library\obj\Debug\net6.0-windows\home_library.AdminChangeUser.resources
+C:\Users\ilya-\source\repos\course-work-db\home-library\obj\Debug\net6.0-windows\home_library.AdminChangeGenre.resources

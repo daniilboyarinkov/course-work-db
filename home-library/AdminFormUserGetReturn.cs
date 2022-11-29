@@ -39,7 +39,10 @@ namespace home_library
             if (CheckGenre())
             {
                 DataGridUser.Columns.Add("column4", "Жанр");
-                updateStudents("");
+                updateStudents("SELECT books.title, authors.fio, books.publication_year " +
+            "FROM authors " +
+            "INNER JOIN books " +
+            "ON authors.author_id = books.author");
             }
             else
             {

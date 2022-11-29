@@ -99,7 +99,7 @@
             this.GetBook.Name = "GetBook";
             this.GetBook.Size = new System.Drawing.Size(206, 29);
             this.GetBook.TabIndex = 2;
-            this.GetBook.Text = "Забронировать книгу";
+            this.GetBook.Text = "Взять книгу";
             this.GetBook.UseVisualStyleBackColor = true;
             this.GetBook.Click += new System.EventHandler(this.GetBook_Click);
             // 
