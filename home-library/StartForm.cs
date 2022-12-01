@@ -21,19 +21,25 @@ namespace home_library
 
         private void UserButton_Click(object sender, EventArgs e)
         {
-            string query = "SELECT reader_name FROM readers";
+            string inputName = UserName.Text.ToLower();
+
+            string query = $"SELECT reader_name FROM readers WHERE reader_name=\"{inputName}\"";
             OleDbCommand command = new(query, Logic.Connection);
             OleDbDataReader reader = command.ExecuteReader();
-
+            
             while (reader.Read())
             {
-                if (UserName.Text == reader[0].ToString())
+                if (inputName == reader[0].ToString()?.ToLower())
                 {
-                    UserForm userForm = new(UserName.Text);
+                    UserForm userForm = new(inputName);
                     // переводим основное окно в состояние невидимости
                     Visible = false;
                     userForm.ShowDialog();
                     Visible = true;
+                } 
+                else
+                {
+                    MessageBox.Show($"Нет пользователя с именем {inputName}!");
                 }
             }
             reader.Close();
@@ -41,7 +47,7 @@ namespace home_library
 
         private void AdminButton_Click(object sender, EventArgs e)
         {
-            AdminForm adminForm = new(Logic.Connection);
+            AdminForm adminForm = new();
             // переводим основное окно в состояние невидимости
             Visible = false;
             adminForm.ShowDialog();

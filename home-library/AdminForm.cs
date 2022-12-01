@@ -1,108 +1,61 @@
-﻿using Microsoft.VisualBasic.ApplicationServices;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Data.OleDb;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+﻿using System.Data.OleDb;
 
 namespace home_library
 {
     public partial class AdminForm : Form
     {
-        private readonly OleDbConnection _connection;
-        public AdminForm(OleDbConnection connect)
+        public AdminForm()
         {
-            InitializeComponent(); 
-            _connection = connect;
-            this.UserGet.Visible = false;
-            this.UserGetBack.Visible = false;
+            InitializeComponent();
+
+            AdminLogic.CheckGenre();
+        }
+
+        private string GetRadioBtnText()
+        {
+            var CheckedButton = groupBox1.Controls.OfType<RadioButton>().FirstOrDefault(r => r.Checked);
+            return CheckedButton?.Text?.ToLower() ?? "";
         }
 
         private void Add_Click(object sender, EventArgs e)
         {
-            AdminFormGenre genre;
-            AdminFormUsers users;
+            string state = GetRadioBtnText();
+            string action = Add.Text.ToLower();
 
-            var CheckedButton = groupBox1.Controls.OfType<RadioButton>().FirstOrDefault(r => r.Checked);
-            switch (CheckedButton?.Text)
-            {
-                case "Жанр":
-                    genre = new AdminFormGenre(_connection, this.Add.Text);
-                    genre.ShowDialog();
-                    break;
-                case "Пользователь":
-                    users = new AdminFormUsers(_connection, this.Add.Text);
-                    users.ShowDialog();
-                    break;
-            }
+            AdminFormStep2 adminFormStep2 = new(state, action);
+            adminFormStep2.ShowDialog();
         }
 
         private void Delete_Click(object sender, EventArgs e)
         {
-            AdminFormGenre genre;
-            AdminFormUsers users;
+            string state = GetRadioBtnText();
+            string action = Delete.Text.ToLower();
 
-            var CheckedButton = groupBox1.Controls.OfType<RadioButton>().FirstOrDefault(r => r.Checked);
-            switch (CheckedButton?.Text)
-            {
-                case "Жанр":
-                    genre = new AdminFormGenre(_connection, this.Delete.Text);
-                    genre.ShowDialog();
-                    break;
-                case "Пользователь":
-                    users = new AdminFormUsers(_connection, this.Delete.Text);
-                    users.ShowDialog();
-                    break;
-            }
-        }
-
-        private void radioButton2_CheckedChanged(object sender, EventArgs e)
-        {
-            var CheckedButton = groupBox1.Controls.OfType<RadioButton>().FirstOrDefault(r => r.Checked);
-            if(CheckedButton?.Text == "Книга")
-            {
-                this.UserGet.Visible = true;
-                this.UserGetBack.Visible = true;
-            }
-            else
-            {
-                this.UserGet.Visible = false;
-                this.UserGetBack.Visible = false;
-            }
-        }
-
-        private void UserGet_Click(object sender, EventArgs e)
-        {
-            AdminFormUserGetReturn getreturnUser = new AdminFormUserGetReturn(_connection, this.UserGet.Text);
-            getreturnUser.ShowDialog();
-        }
-
-        private void UserGetBack_Click(object sender, EventArgs e)
-        {
-            AdminFormUserGetReturn getreturnUser = new AdminFormUserGetReturn(_connection, this.UserGetBack.Text);
-            getreturnUser.ShowDialog();
+            AdminFormStep2 adminFormStep2 = new(state, action);
+            adminFormStep2.ShowDialog();
         }
 
         private void Change_Click(object sender, EventArgs e)
         {
-            AdminChangeUser changeUser;
-            AdminChangeGenre changeGenre;
-            var CheckedButton = groupBox1.Controls.OfType<RadioButton>().FirstOrDefault(r => r.Checked);
-            switch (CheckedButton?.Text)
+            string state = GetRadioBtnText();
+            string action = Delete.Text.ToLower();
+
+            AdminFormStep2 adminFormStep2 = new(state, action);
+            adminFormStep2.ShowDialog();
+        }
+
+        private void radioButton2_CheckedChanged(object sender, EventArgs e)
+        {
+            string state = GetRadioBtnText();
+            if (state == "книга")
             {
-                case "Жанр":
-                    changeGenre = new AdminChangeGenre(_connection);
-                    changeGenre.ShowDialog();
-                    break;
-                case "Пользователь":
-                    changeUser = new AdminChangeUser(_connection);
-                    changeUser.ShowDialog();
-                    break;
+                //this.UserGet.Visible = true;
+                //this.UserGetBack.Visible = true;
+            }
+            else
+            {
+                //this.UserGet.Visible = false;
+                //this.UserGetBack.Visible = false;
             }
         }
     }
