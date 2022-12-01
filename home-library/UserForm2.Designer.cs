@@ -48,14 +48,15 @@
             this.Column4,
             this.Column1,
             this.Column5});
-            this.DataGridUser.Location = new System.Drawing.Point(12, 12);
+            this.DataGridUser.Location = new System.Drawing.Point(10, 9);
+            this.DataGridUser.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.DataGridUser.MultiSelect = false;
             this.DataGridUser.Name = "DataGridUser";
             this.DataGridUser.RowHeadersVisible = false;
             this.DataGridUser.RowHeadersWidth = 51;
             this.DataGridUser.RowTemplate.Height = 29;
             this.DataGridUser.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.DataGridUser.Size = new System.Drawing.Size(746, 322);
+            this.DataGridUser.Size = new System.Drawing.Size(653, 242);
             this.DataGridUser.TabIndex = 2;
             // 
             // Column2
@@ -97,9 +98,10 @@
             // 
             this.GetBackBook.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.GetBackBook.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.GetBackBook.Location = new System.Drawing.Point(231, 363);
+            this.GetBackBook.Location = new System.Drawing.Point(202, 272);
+            this.GetBackBook.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.GetBackBook.Name = "GetBackBook";
-            this.GetBackBook.Size = new System.Drawing.Size(317, 41);
+            this.GetBackBook.Size = new System.Drawing.Size(277, 31);
             this.GetBackBook.TabIndex = 3;
             this.GetBackBook.Text = "Возвращена";
             this.GetBackBook.UseVisualStyleBackColor = true;
@@ -107,11 +109,12 @@
             // 
             // UserForm2
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(770, 416);
+            this.ClientSize = new System.Drawing.Size(674, 312);
             this.Controls.Add(this.GetBackBook);
             this.Controls.Add(this.DataGridUser);
+            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "UserForm2";
             this.Text = "UserForm2";
             ((System.ComponentModel.ISupportInitialize)(this.DataGridUser)).EndInit();

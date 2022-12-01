@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\ilya-\\source\\repos\\course-work-db\\home-library\\home-library.csproj": {}
+    "C:\\Users\\sudlenia\\Desktop\\work\\course-work\\course-work-db\\home-library\\home-library.csproj": {}
   },
   "projects": {
-    "C:\\Users\\ilya-\\source\\repos\\course-work-db\\home-library\\home-library.csproj": {
+    "C:\\Users\\sudlenia\\Desktop\\work\\course-work\\course-work-db\\home-library\\home-library.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\ilya-\\source\\repos\\course-work-db\\home-library\\home-library.csproj",
+        "projectUniqueName": "C:\\Users\\sudlenia\\Desktop\\work\\course-work\\course-work-db\\home-library\\home-library.csproj",
         "projectName": "home-library",
-        "projectPath": "C:\\Users\\ilya-\\source\\repos\\course-work-db\\home-library\\home-library.csproj",
-        "packagesPath": "C:\\Users\\ilya-\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\ilya-\\source\\repos\\course-work-db\\home-library\\obj\\",
+        "projectPath": "C:\\Users\\sudlenia\\Desktop\\work\\course-work\\course-work-db\\home-library\\home-library.csproj",
+        "packagesPath": "C:\\Users\\sudlenia\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\sudlenia\\Desktop\\work\\course-work\\course-work-db\\home-library\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\ilya-\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\sudlenia\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -64,7 +64,7 @@
               "privateAssets": "none"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.100\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.401\\RuntimeIdentifierGraph.json"
         }
       }
     }

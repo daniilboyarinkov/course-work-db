@@ -5,57 +5,48 @@ namespace home_library
 
     public partial class StartForm : Form
     {
-
-        // private static readonly string _connectString = "Provider=Microsoft.Jet.OLEDB.4.0;Data Source=DB.mdb;";
-        private static readonly string _connectString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=DB.mdb;";
-        private readonly OleDbConnection _connection;
-
         public StartForm()
         {
             InitializeComponent();
 
             // открываем соединение с бд
-            _connection = new OleDbConnection(_connectString);
-            _connection.Open();
+            Logic.Connection.Open();
         }
 
         private void StartForm_FormClosed(object sender, FormClosedEventArgs e)
         {
             // закрываем соединение с бд
-            _connection.Close();
+            Logic.Connection.Close();
         }
 
         private void UserButton_Click(object sender, EventArgs e)
         {
             string query = "SELECT reader_name FROM readers";
-            OleDbCommand command = new OleDbCommand(query, _connection);
+            OleDbCommand command = new(query, Logic.Connection);
             OleDbDataReader reader = command.ExecuteReader();
 
             while (reader.Read())
             {
                 if (UserName.Text == reader[0].ToString())
                 {
-                    UserForm userForm = new(UserName.Text, _connection);
+                    UserForm userForm = new(UserName.Text);
                     // переводим основное окно в состояние невидимости
-                    this.Visible = false;
+                    Visible = false;
                     userForm.ShowDialog();
-                    this.Visible = true;
+                    Visible = true;
                 }
             }
-
             reader.Close();
-
-            
         }
 
         private void AdminButton_Click(object sender, EventArgs e)
         {
-            AdminForm adminForm = new(_connection);
+            AdminForm adminForm = new(Logic.Connection);
             // переводим основное окно в состояние невидимости
-            this.Visible = false;
+            Visible = false;
             adminForm.ShowDialog();
             // по закрытию дочернего окна закрываем и основное
-            this.Visible=true;
+            Visible=true;
         }
         
     }
