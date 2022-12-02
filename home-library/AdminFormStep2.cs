@@ -113,6 +113,7 @@ namespace home_library
 
         private void SaveBtn_Click(object sender, EventArgs e)
         {
+            // validation
             foreach (Control control in groupBox1.Controls)
             {
                 if (control is TextBox && control.Text.Length == 0)
@@ -126,6 +127,9 @@ namespace home_library
                     return;
                 }
             }
+
+            // db quering
+            
         }
     }
 }

@@ -24,7 +24,7 @@ namespace home_library
 
 
         public static bool IsGenre { get; set; } = false;
-        public static string Username { get; set; } = string.Empty;
+        public static string Username { get; set; } = string.Empty; 
 
         // methods ------------------------------------------------------
         public static void InitializeLogic()
