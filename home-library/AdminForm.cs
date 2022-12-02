@@ -7,8 +7,6 @@ namespace home_library
         public AdminForm()
         {
             InitializeComponent();
-
-            AdminLogic.CheckGenre();
         }
 
         private string GetRadioBtnText()

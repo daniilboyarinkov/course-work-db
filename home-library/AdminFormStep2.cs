@@ -40,7 +40,7 @@ namespace home_library
                     groupBox1.Controls?.Add(CreateLabel("publicationYear_label", "Год публикации: ", 5));
                     groupBox1.Controls?.Add(CreateTextBox("publicationYear_textbox", "", 6));
 
-                    if (AdminLogic.IsGenre)
+                    if (Logic.IsGenre)
                     {
                         groupBox1.Controls?.Add(CreateLabel("genre_label", "Жанр: ", 7));
                         groupBox1.Controls?.Add(CreateTextBox("genre_textbox", "", 8));

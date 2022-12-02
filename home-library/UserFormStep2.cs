@@ -17,7 +17,7 @@
             DataGridUser.Columns.Add("author", "Автор");
             DataGridUser.Columns.Add("publication_year", "Год публикации");
             DataGridUser.Columns.Add("take_date", "Взята");
-            if (UserLogic.IsGenre) DataGridUser.Columns.Add("genre", "Жанр");
+            if (Logic.IsGenre) DataGridUser.Columns.Add("genre", "Жанр");
 
             string query = string.Empty;
 
@@ -27,7 +27,7 @@
 
                 ActionBtn.Text = "Вернуть";
 
-                query = UserLogic.GetUsersBooks(UserLogic.IsGenre, UserLogic.Username);
+                query = Queries.GetUserBooks(UserLogic.Username);
             }
             else if (step == "user_history")
             {
@@ -35,7 +35,7 @@
 
                 ActionBtn.Text = "Информация";
 
-                query = UserLogic.GetUsersHistory(UserLogic.IsGenre, UserLogic.Username);
+                query = Queries.GetUserHistory(UserLogic.Username);
             }
             else
             {
@@ -43,7 +43,7 @@
             }
 
             DataGridUser.Rows.Clear();
-            List<List<string>> rows = UserLogic.UpdateBooks(query);
+            List<List<string>> rows = Logic.ExecuteQuery(query);
             rows.ForEach(row => DataGridUser.Rows.Add(row.ToArray()));
         }
 

@@ -8,28 +8,27 @@ namespace home_library
         {
             InitializeComponent();
 
-            UserLogic.InitializeLogic();
             UserLogic.Username = name;
 
-            label2.Visible = UserLogic.IsGenre;
-            radioButton1.Visible = UserLogic.IsGenre;
+            label2.Visible = Logic.IsGenre;
+            radioButton1.Visible = Logic.IsGenre;
 
             UpdateBooks();
         }
 
         private void UserForm_FormClosing(object sender, FormClosingEventArgs e)
         {
-            if (UserLogic.IsGenre) DataGridUser.Columns.Remove("column4");
+            if (Logic.IsGenre) DataGridUser.Columns.Remove("column4");
         }
 
         private void UpdateBooks()
         {
-            if (UserLogic.IsGenre) DataGridUser.Columns.Add("column4", "Жанр");
+            if (Logic.IsGenre) DataGridUser.Columns.Add("column4", "Жанр");
 
-            string query = UserLogic.GetAllAvailableBooks(UserLogic.IsGenre);
+            string query = Queries.GetAllAvailableBooks(Logic.IsGenre);
 
             DataGridUser.Rows.Clear();
-            List<List<string>> rows = UserLogic.UpdateBooks(query);
+            List<List<string>> rows = Logic.ExecuteQuery(query);
             rows.ForEach(row => DataGridUser.Rows.Add(row.ToArray()));
         }
 

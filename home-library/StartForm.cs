@@ -34,6 +34,9 @@ namespace home_library
                     UserForm userForm = new(inputName);
                     // переводим основное окно в состояние невидимости
                     Visible = false;
+                    // проверяем злосчастный genre
+                    //Logic.IsGenre = Logic.CheckGenre();
+
                     userForm.ShowDialog();
                     Visible = true;
                 } 
@@ -47,12 +50,16 @@ namespace home_library
 
         private void AdminButton_Click(object sender, EventArgs e)
         {
-            AdminForm adminForm = new();
             // переводим основное окно в состояние невидимости
             Visible = false;
-            adminForm.ShowDialog();
+
+
+            AdminLoginForm adminLoginForm = new();
+            adminLoginForm.ShowDialog();
+
+
             // по закрытию дочернего окна закрываем и основное
-            Visible=true;
+            Visible =true;
         }
         
     }

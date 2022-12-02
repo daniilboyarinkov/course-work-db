@@ -6,28 +6,6 @@ namespace home_library
 {
     public class AdminLogic
     {
-        public static bool IsGenre { get; set; } = false;
-
-        public static void InitializeLogic()
-        {
-            IsGenre = CheckGenre();
-        }
-
-        public static bool CheckGenre()
-        {
-            try
-            {
-                string query = "SELECT * FROM genres";
-                OleDbCommand command = new(query, Logic.Connection);
-                command.ExecuteNonQuery();
-                return true;
-            }
-            catch
-            {
-                MessageBox.Show("Erroe!@");
-                return false;
-            }
-        }
 
         // реализация хэширования вот этого прекрасного алгоритма:
         // https://learn.microsoft.com/en-us/dotnet/api/system.security.cryptography.rfc2898derivebytes?redirectedfrom=MSDN&view=net-7.0
