@@ -34,7 +34,7 @@ namespace home_library
             $"WHERE (((genres.genre_name)=\"{genre}\") AND ((library.taken)=False));";
         // все свободные отфильтрованные по автору
         public static string GetAllAvailableBooksByAuthor(bool isGenre, string author) =>
-            $"{GetAllAvailableBooks(isGenre)[..^1]} AND (((authors.fio)=\"{author}\");";
+            $"{GetAllAvailableBooks(isGenre)[..^1]} AND (((authors.fio)=\"{author}\"));";
         // получить всю историю
         public static string GetAllHistory() => $"SELECT books.title, readers.reader_name, history.take_date, history.return_date " +
             $"FROM readers INNER JOIN (books INNER JOIN history ON books.book_id = history.book) ON readers.reader_id = history.reader;";

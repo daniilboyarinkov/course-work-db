@@ -1,19 +1,52 @@
-﻿using System.Data.OleDb;
+﻿
+using System.Runtime.CompilerServices;
 
 namespace home_library
 {
     public partial class UserForm : Form
     {
+        private readonly string[] authors;
         public UserForm(string name)
         {
             InitializeComponent();
 
             UserLogic.Username = name;
 
-            label2.Visible = Logic.IsGenre;
-            radioButton1.Visible = Logic.IsGenre;
-
             UpdateBooks();
+            authors = GetAllAuthors();
+            AddRadioButtonsFilters(authors);
+        }
+
+        private string[] GetAllAuthors()
+        {
+            string query = Queries.GetAllAuthors();
+            List<List<string>> data = Logic.ExecuteQuery(query);
+            return data.Select(d => d[0]).ToArray();
+        }
+        private void AddRadioButtonsFilters(string[] authors)
+        {
+            AllAuthorsRadioBtn.CheckedChanged += (o, args) =>
+            {
+                if (AllAuthorsRadioBtn.Checked)
+                    UpdateBooks(AllAuthorsRadioBtn.Text);
+            };
+
+            int i = 0;
+            foreach (string author in authors)
+            {
+                RadioButton button = new() { 
+                    Text = author,
+                    Name = author,
+                    Location = new Point(7, 25 * i++ + 45)
+                };
+                button.CheckedChanged += (o, args) =>
+                {
+                    if (button.Checked)
+                        UpdateBooks(button.Text);
+                };
+
+                AuthorFilterBox.Controls.Add(button);
+            }
         }
 
         private void UserForm_FormClosing(object sender, FormClosingEventArgs e)
@@ -21,11 +54,15 @@ namespace home_library
             if (Logic.IsGenre) DataGridUser.Columns.Remove("column4");
         }
 
-        private void UpdateBooks()
+        private void UpdateBooks(string authorFilter = "Все авторы")
         {
             if (Logic.IsGenre) DataGridUser.Columns.Add("column4", "Жанр");
 
             string query = Queries.GetAllAvailableBooks(Logic.IsGenre);
+            if (authorFilter != "Все авторы")
+            {
+                query = Queries.GetAllAvailableBooksByAuthor(Logic.IsGenre, authorFilter);
+            }
 
             DataGridUser.Rows.Clear();
             List<List<string>> rows = Logic.ExecuteQuery(query);

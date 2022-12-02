@@ -35,18 +35,20 @@
             this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.GetBook = new System.Windows.Forms.Button();
             this.ShowHistory = new System.Windows.Forms.Button();
-            this.label2 = new System.Windows.Forms.Label();
-            this.radioButton1 = new System.Windows.Forms.RadioButton();
+            this.AuthorFilterBox = new System.Windows.Forms.GroupBox();
+            this.AllAuthorsRadioBtn = new System.Windows.Forms.RadioButton();
             ((System.ComponentModel.ISupportInitialize)(this.DataGridUser)).BeginInit();
+            this.AuthorFilterBox.SuspendLayout();
             this.SuspendLayout();
             // 
             // UserBooks
             // 
             this.UserBooks.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.UserBooks.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.UserBooks.Location = new System.Drawing.Point(580, 21);
+            this.UserBooks.Location = new System.Drawing.Point(508, 9);
+            this.UserBooks.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.UserBooks.Name = "UserBooks";
-            this.UserBooks.Size = new System.Drawing.Size(202, 29);
+            this.UserBooks.Size = new System.Drawing.Size(177, 38);
             this.UserBooks.TabIndex = 0;
             this.UserBooks.Text = "Мои книги";
             this.UserBooks.UseVisualStyleBackColor = true;
@@ -60,14 +62,15 @@
             this.Column2,
             this.Column3,
             this.Column4});
-            this.DataGridUser.Location = new System.Drawing.Point(12, 12);
+            this.DataGridUser.Location = new System.Drawing.Point(10, 9);
+            this.DataGridUser.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.DataGridUser.MultiSelect = false;
             this.DataGridUser.Name = "DataGridUser";
             this.DataGridUser.RowHeadersVisible = false;
             this.DataGridUser.RowHeadersWidth = 51;
             this.DataGridUser.RowTemplate.Height = 29;
             this.DataGridUser.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.DataGridUser.Size = new System.Drawing.Size(501, 307);
+            this.DataGridUser.Size = new System.Drawing.Size(438, 230);
             this.DataGridUser.TabIndex = 1;
             // 
             // Column2
@@ -95,9 +98,10 @@
             // 
             this.GetBook.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.GetBook.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.GetBook.Location = new System.Drawing.Point(99, 335);
+            this.GetBook.Location = new System.Drawing.Point(87, 243);
+            this.GetBook.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.GetBook.Name = "GetBook";
-            this.GetBook.Size = new System.Drawing.Size(206, 29);
+            this.GetBook.Size = new System.Drawing.Size(180, 30);
             this.GetBook.TabIndex = 2;
             this.GetBook.Text = "Взять книгу";
             this.GetBook.UseVisualStyleBackColor = true;
@@ -107,43 +111,44 @@
             // 
             this.ShowHistory.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.ShowHistory.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.ShowHistory.Location = new System.Drawing.Point(580, 68);
+            this.ShowHistory.Location = new System.Drawing.Point(508, 51);
+            this.ShowHistory.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.ShowHistory.Name = "ShowHistory";
-            this.ShowHistory.Size = new System.Drawing.Size(202, 29);
+            this.ShowHistory.Size = new System.Drawing.Size(177, 40);
             this.ShowHistory.TabIndex = 3;
             this.ShowHistory.Text = "Моя история";
             this.ShowHistory.UseVisualStyleBackColor = true;
             this.ShowHistory.Click += new System.EventHandler(this.ShowHistory_Click);
             // 
-            // label2
+            // AuthorFilterBox
             // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label2.Location = new System.Drawing.Point(580, 148);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(66, 23);
-            this.label2.TabIndex = 5;
-            this.label2.Text = "Жанры";
+            this.AuthorFilterBox.Controls.Add(this.AllAuthorsRadioBtn);
+            this.AuthorFilterBox.Location = new System.Drawing.Point(485, 96);
+            this.AuthorFilterBox.Name = "AuthorFilterBox";
+            this.AuthorFilterBox.Size = new System.Drawing.Size(216, 143);
+            this.AuthorFilterBox.TabIndex = 4;
+            this.AuthorFilterBox.TabStop = false;
+            this.AuthorFilterBox.Text = "Фильтр по авторам";
             // 
-            // radioButton1
+            // AllAuthorsRadioBtn
             // 
-            this.radioButton1.AutoSize = true;
-            this.radioButton1.Location = new System.Drawing.Point(580, 188);
-            this.radioButton1.Name = "radioButton1";
-            this.radioButton1.Size = new System.Drawing.Size(117, 24);
-            this.radioButton1.TabIndex = 6;
-            this.radioButton1.TabStop = true;
-            this.radioButton1.Text = "radioButton1";
-            this.radioButton1.UseVisualStyleBackColor = true;
+            this.AllAuthorsRadioBtn.AutoSize = true;
+            this.AllAuthorsRadioBtn.Checked = true;
+            this.AllAuthorsRadioBtn.Location = new System.Drawing.Point(7, 23);
+            this.AllAuthorsRadioBtn.Name = "AllAuthorsRadioBtn";
+            this.AllAuthorsRadioBtn.Size = new System.Drawing.Size(87, 19);
+            this.AllAuthorsRadioBtn.TabIndex = 0;
+            this.AllAuthorsRadioBtn.TabStop = true;
+            this.AllAuthorsRadioBtn.Text = "Все авторы";
+            this.AllAuthorsRadioBtn.UseVisualStyleBackColor = true;
             // 
             // UserForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(843, 380);
+            this.ClientSize = new System.Drawing.Size(738, 285);
+            this.Controls.Add(this.AuthorFilterBox);
             this.Controls.Add(this.DataGridUser);
-            this.Controls.Add(this.radioButton1);
-            this.Controls.Add(this.label2);
             this.Controls.Add(this.ShowHistory);
             this.Controls.Add(this.GetBook);
             this.Controls.Add(this.UserBooks);
@@ -152,8 +157,9 @@
             this.Text = "UserForm";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.UserForm_FormClosing);
             ((System.ComponentModel.ISupportInitialize)(this.DataGridUser)).EndInit();
+            this.AuthorFilterBox.ResumeLayout(false);
+            this.AuthorFilterBox.PerformLayout();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -163,10 +169,10 @@
         private DataGridView DataGridUser;
         private Button GetBook;
         private Button ShowHistory;
-        private Label label2;
-        private RadioButton radioButton1;
         private DataGridViewTextBoxColumn Column2;
         private DataGridViewTextBoxColumn Column3;
         private DataGridViewTextBoxColumn Column4;
+        private GroupBox AuthorFilterBox;
+        private RadioButton AllAuthorsRadioBtn;
     }
 }

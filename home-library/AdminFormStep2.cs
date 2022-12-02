@@ -1,11 +1,7 @@
 ﻿
 using home_library.Extensions;
-using Microsoft.VisualBasic.Logging;
-using System.Data.Common;
 using System.Data.OleDb;
 using System.Text.RegularExpressions;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace home_library
 {
