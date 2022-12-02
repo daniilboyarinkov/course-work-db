@@ -1,5 +1,4 @@
-﻿using System.Data.OleDb;
-
+﻿
 namespace home_library
 {
     public partial class AdminForm : Form
@@ -7,6 +6,11 @@ namespace home_library
         public AdminForm()
         {
             InitializeComponent();
+
+            if (Logic.IsGenre)
+            {
+                groupBox1.Controls.Add(new RadioButton() { Name = "genre_radioBtn", Text = "Жанр" });
+            }
         }
 
         private string GetRadioBtnText()
@@ -36,7 +40,7 @@ namespace home_library
         private void Change_Click(object sender, EventArgs e)
         {
             string state = GetRadioBtnText();
-            string action = Delete.Text.ToLower();
+            string action = Change.Text.ToLower();
 
             AdminFormStep2 adminFormStep2 = new(state, action);
             adminFormStep2.ShowDialog();

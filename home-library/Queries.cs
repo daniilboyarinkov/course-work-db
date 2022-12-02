@@ -49,14 +49,57 @@ namespace home_library
         public static string GetAdminHash(string admin) => $"SELECT admins.hash_password FROM admins WHERE (((admins.username)=\"{admin}\")); ";
 
         // получить конкретное
-        public static string GetBook(string title) => $"SELECT books.* FROM books WHERE (((books.title)=\"{title}\")); ";
+        public static string GetBook(string title) => $"SELECT books.book_id, books.title, authors.fio, books.publication_year FROM authors INNER JOIN books ON authors.author_id = books.author WHERE (((books.title)=\"{title}\")); ";
         public static string GetGenre(string genre) => $"SELECT genres.* FROM genres WHERE (((genres.genre_name)=\"{genre}\")); ";
         public static string GetReader(string username) => $"SELECT readers.* FROM readers WHERE (((readers.reader_name)=\"{username}\")); ";
-        public static string GetAuthor(string author) => $"SELECT authors.*, authors.fio FROM authors WHERE (((authors.fio)=\"{author}\")); ";
+        public static string GetAuthor(string author) => $"SELECT authors.* FROM authors WHERE (((authors.fio)=\"{author}\")); ";
         public static string GetAdmin(string admin) => $"SELECT admins.* FROM admins WHERE (((admins.username)=\"{admin}\")); ";
+
+        // добавить конкретное
+        public static string AddBook(string title, string author, int publication_year) => 
+            $"INSERT INTO books ( title, author, publication_year ) SELECT \"{title}\", authors.author_id, {publication_year} FROM authors WHERE authors.fio = '{author}';";
+        public static string AddGenre(string name) => 
+            $"INSERT INTO genres ( genre_name ) Values (\"{name}\");";
+        public static string AddReader(string name, DateTime birth_date) => 
+            $"INSERT INTO readers ( reader_name, birth_date ) Values (\"{name}\", \"{birth_date:dd/MM/yyyy}\");";
+        public static string AddAuthor(string fio, DateTime birth_date, DateTime? death_date = null) => 
+            $"INSERT INTO authors ( fio, birth_date , death_date) " +
+            $"Values (\"{fio}\", \"{birth_date:dd/MM/yyyy}\", \"{(death_date == null ? "" : death_date?.ToString("dd/MM/yyyy"))}\");";
+        public static string AddAdmin(string admin) => 
+            $"insert into admins (username, hash_password) " +
+            $"values (\"{admin}\", \"AHcSiW2Aa508Mq6f5bO+papFZW9wooockWBnZf+FLOSVT958nZQg/ekCcipKVygV6g==\");";
+
+        // обновить конкретное
+        public static string UpdateBook(string new_title, int new_author, string new_publication_year, string prev_title, int prev_author) => 
+            $"UPDATE books SET books.title = \"{new_title}\", books.author = {new_author}, publication_year = {int.Parse(new_publication_year)} " +
+            $"WHERE (((books.author)={prev_author}) AND ((books.title)=\"{prev_title}\")); ";
+        public static string UpdateGenre(string new_name, string prev_name) => 
+            $"UPDATE genres SET genres.genre_name = \"{new_name}\" " +
+            $"WHERE (((genres.genre_name)=\"{prev_name}\")); ";
+        public static string UpdateReader(string new_name, DateTime new_birth_date, string prev_name) => 
+            $"UPDATE readers SET readers.reader_name = \"{new_name}\", readers.birth_date = #{new_birth_date.ToString("dd/MM/yyyy").Replace(".", "/")}# " +
+            $"WHERE (((readers.reader_name)=\"{prev_name}\")); ";
+        public static string UpdateAuthor(string new_fio, DateTime new_birth_date, string prev_fio, DateTime? new_death_date = null) => 
+            $"UPDATE authors SET authors.fio = \"{new_fio}\", authors.birth_date = #{new_birth_date.ToString("dd/MM/yyyy").Replace(".", "/")}#, authors.death_date = \"{(new_death_date == null ? "" : new_death_date?.ToString("dd/MM/yyyy").Replace(".", "/"))}\" " +
+            $"WHERE (((authors.fio)=\"{prev_fio}\"));\r\n";
+        public static string UpdateAdmin(string new_admin, string prev_admin) => 
+            $"UPDATE admins SET admins.username = \"{new_admin}\" WHERE (((admins.username)=\"{prev_admin}\"));\r\n";
+
+        // удалить конкретное
+        public static string DeleteBook(string title) => 
+            $"DELETE books.*, books.title FROM books WHERE (((books.title)=\"{title}\")); ";
+        public static string DeleteGenre(string name) => 
+            $"DELETE genres.*, genres.genre_name FROM genres WHERE (((genres.genre_name)=\"{name}\")); ";
+        public static string DeleteReader(string name) => 
+        $"DELETE readers.*, readers.reader_name FROM readers WHERE (((readers.reader_name)=\"{name}\")); ";
+        public static string DeleteAuthor(string fio) => 
+            $"DELETE authors.*, authors.fio FROM authors WHERE (((authors.fio)=\"{fio}\")); ";
+        public static string DeleteAdmin(string admin) => 
+            $"DELETE admins.*, admins.username FROM admins WHERE (((admins.username)=\"{admin}\")); ";
 
         // получить айдишники 
         public static string GetReaderId(string username) => $"SELECT reader_id FROM readers WHERE ((readers.reader_name)=\"{username}\"); ";
+        public static string GetAuthorId(string fio) => $"SELECT author_id FROM authors WHERE ((authors.fio)=\"{fio}\"); ";
         public static string GetBookId(string title) => $"SELECT book_id FROM books WHERE ((books.title)=\"{title}\"); ";
 
 

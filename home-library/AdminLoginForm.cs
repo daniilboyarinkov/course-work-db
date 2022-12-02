@@ -1,7 +1,4 @@
 ﻿
-using System.Data.Common;
-using System.Data.OleDb;
-
 namespace home_library
 {
     public partial class AdminLoginForm : Form
@@ -13,8 +10,8 @@ namespace home_library
 
         private void EnterBtn_Click(object sender, EventArgs e)
         {
-            string login = Login.Text;
-            string password = Password.Text;
+            string login = Login.Text.Trim();
+            string password = Password.Text.Trim();
 
             if (!isLoginValid(login))
             {
@@ -22,6 +19,7 @@ namespace home_library
                 return;
             }
 
+            AdminLogic.Login = login;
             string dbHash = getDBHash(login);
 
             if (!AdminLogic.VerifyHashedPassword(dbHash, password))
@@ -30,21 +28,22 @@ namespace home_library
                 return;
             }
 
-            //AdminForm adminForm = new();
-            //adminForm.ShowDialog();
+            AdminForm adminForm = new();
+            Visible = false;
+            adminForm.ShowDialog();
         }
 
         private bool isLoginValid(string login)
         {
-            return true;
+            string query = Queries.GetAdmin(login);
+            List<List<string>> data = Logic.ExecuteQuery(query);
+            return data.Count > 0;
         }
 
         private string getDBHash(string login)
         {
             string query = Queries.GetAdminHash(login);
-
             List<List<string>> data = Logic.ExecuteQuery(query);
-
             return data[0][0];
         }
     }
