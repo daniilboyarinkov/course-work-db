@@ -39,9 +39,10 @@
             // 
             this.UserButton.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.UserButton.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.UserButton.Location = new System.Drawing.Point(12, 229);
+            this.UserButton.Location = new System.Drawing.Point(289, 85);
+            this.UserButton.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.UserButton.Name = "UserButton";
-            this.UserButton.Size = new System.Drawing.Size(100, 40);
+            this.UserButton.Size = new System.Drawing.Size(85, 29);
             this.UserButton.TabIndex = 0;
             this.UserButton.Text = "Войти";
             this.UserButton.UseVisualStyleBackColor = true;
@@ -51,9 +52,10 @@
             // 
             this.AdminButton.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.AdminButton.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.AdminButton.Location = new System.Drawing.Point(280, 229);
+            this.AdminButton.Location = new System.Drawing.Point(245, 172);
+            this.AdminButton.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.AdminButton.Name = "AdminButton";
-            this.AdminButton.Size = new System.Drawing.Size(200, 40);
+            this.AdminButton.Size = new System.Drawing.Size(175, 30);
             this.AdminButton.TabIndex = 1;
             this.AdminButton.Text = "Войти как админ";
             this.AdminButton.UseVisualStyleBackColor = true;
@@ -63,9 +65,9 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label1.Location = new System.Drawing.Point(109, 119);
+            this.label1.Location = new System.Drawing.Point(95, 89);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(51, 28);
+            this.label1.Size = new System.Drawing.Size(41, 21);
             this.label1.TabIndex = 2;
             this.label1.Text = "Имя";
             // 
@@ -73,31 +75,32 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Segoe UI", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label2.Location = new System.Drawing.Point(109, 37);
+            this.label2.Location = new System.Drawing.Point(110, 23);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(279, 35);
+            this.label2.Size = new System.Drawing.Size(224, 28);
             this.label2.TabIndex = 3;
             this.label2.Text = "Домашняя библиотека";
             // 
             // UserName
             // 
             this.UserName.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.UserName.Location = new System.Drawing.Point(171, 113);
+            this.UserName.Location = new System.Drawing.Point(150, 85);
+            this.UserName.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.UserName.Name = "UserName";
-            this.UserName.Size = new System.Drawing.Size(151, 34);
+            this.UserName.Size = new System.Drawing.Size(133, 29);
             this.UserName.TabIndex = 4;
             // 
             // StartForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(492, 281);
+            this.ClientSize = new System.Drawing.Size(430, 211);
             this.Controls.Add(this.UserName);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.AdminButton);
             this.Controls.Add(this.UserButton);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "StartForm";
             this.Text = "Form1";
             this.ResumeLayout(false);

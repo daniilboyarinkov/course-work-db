@@ -35,8 +35,9 @@
             this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.GetBook = new System.Windows.Forms.Button();
             this.ShowHistory = new System.Windows.Forms.Button();
-            this.AuthorFilterBox = new System.Windows.Forms.GroupBox();
             this.AllAuthorsRadioBtn = new System.Windows.Forms.RadioButton();
+            this.filterByGenre = new System.Windows.Forms.ComboBox();
+            this.AuthorFilterBox = new System.Windows.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize)(this.DataGridUser)).BeginInit();
             this.AuthorFilterBox.SuspendLayout();
             this.SuspendLayout();
@@ -120,21 +121,11 @@
             this.ShowHistory.UseVisualStyleBackColor = true;
             this.ShowHistory.Click += new System.EventHandler(this.ShowHistory_Click);
             // 
-            // AuthorFilterBox
-            // 
-            this.AuthorFilterBox.Controls.Add(this.AllAuthorsRadioBtn);
-            this.AuthorFilterBox.Location = new System.Drawing.Point(486, 12);
-            this.AuthorFilterBox.Name = "AuthorFilterBox";
-            this.AuthorFilterBox.Size = new System.Drawing.Size(216, 123);
-            this.AuthorFilterBox.TabIndex = 4;
-            this.AuthorFilterBox.TabStop = false;
-            this.AuthorFilterBox.Text = "Фильтр по авторам";
-            // 
             // AllAuthorsRadioBtn
             // 
             this.AllAuthorsRadioBtn.AutoSize = true;
             this.AllAuthorsRadioBtn.Checked = true;
-            this.AllAuthorsRadioBtn.Location = new System.Drawing.Point(7, 23);
+            this.AllAuthorsRadioBtn.Location = new System.Drawing.Point(3, 3);
             this.AllAuthorsRadioBtn.Name = "AllAuthorsRadioBtn";
             this.AllAuthorsRadioBtn.Size = new System.Drawing.Size(87, 19);
             this.AllAuthorsRadioBtn.TabIndex = 0;
@@ -142,12 +133,30 @@
             this.AllAuthorsRadioBtn.Text = "Все авторы";
             this.AllAuthorsRadioBtn.UseVisualStyleBackColor = true;
             // 
+            // filterByGenre
+            // 
+            this.filterByGenre.FormattingEnabled = true;
+            this.filterByGenre.Location = new System.Drawing.Point(486, 171);
+            this.filterByGenre.Name = "filterByGenre";
+            this.filterByGenre.Size = new System.Drawing.Size(216, 23);
+            this.filterByGenre.TabIndex = 5;
+            // 
+            // AuthorFilterBox
+            // 
+            this.AuthorFilterBox.AutoScroll = true;
+            this.AuthorFilterBox.Controls.Add(this.AllAuthorsRadioBtn);
+            this.AuthorFilterBox.Location = new System.Drawing.Point(486, 12);
+            this.AuthorFilterBox.Name = "AuthorFilterBox";
+            this.AuthorFilterBox.Size = new System.Drawing.Size(216, 153);
+            this.AuthorFilterBox.TabIndex = 6;
+            // 
             // UserForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(738, 293);
             this.Controls.Add(this.AuthorFilterBox);
+            this.Controls.Add(this.filterByGenre);
             this.Controls.Add(this.DataGridUser);
             this.Controls.Add(this.ShowHistory);
             this.Controls.Add(this.GetBook);
@@ -172,7 +181,8 @@
         private DataGridViewTextBoxColumn Column2;
         private DataGridViewTextBoxColumn Column3;
         private DataGridViewTextBoxColumn Column4;
-        private GroupBox AuthorFilterBox;
         private RadioButton AllAuthorsRadioBtn;
+        private ComboBox filterByGenre;
+        private Panel AuthorFilterBox;
     }
 }

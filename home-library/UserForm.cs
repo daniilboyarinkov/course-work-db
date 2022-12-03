@@ -15,6 +15,17 @@ namespace home_library
             UpdateBooks();
             authors = GetAllAuthors();
             AddRadioButtonsFilters(authors);
+            if (Logic.IsGenre) DataGridUser.Columns.Add("column4", "Жанр");
+
+            if (Logic.IsGenre)
+            {
+                filterByGenre.Items.AddRange(new string[] { "Все жанры", "триллер" });
+                filterByGenre.SelectedValueChanged += (o, args) =>
+                {
+                    UpdateBooks("Все авторы", filterByGenre.Text);
+                };
+            }
+            else filterByGenre.Visible = false;
 
             CheckDate();
         }
@@ -27,7 +38,7 @@ namespace home_library
         }
 
         // проверка если у пользоваителя сегодня др
-        private void CheckUserBirthDay() 
+        private void CheckUserBirthDay()
         {
             string query = Queries.CheckUsersBirthDay(UserLogic.Username);
             List<List<string>> rows = Logic.ExecuteQuery(query);
@@ -36,7 +47,7 @@ namespace home_library
             MessageBox.Show("С днем рождения!");
         }
         // авторы у которых сегодня день рождения
-        private void CheckAuthorAnniversary() 
+        private void CheckAuthorAnniversary()
         {
             string query = Queries.GetBirthdayAuthors();
             List<List<string>> rows = Logic.ExecuteQuery(query);
@@ -92,14 +103,16 @@ namespace home_library
             if (Logic.IsGenre) DataGridUser.Columns.Remove("column4");
         }
 
-        private void UpdateBooks(string authorFilter = "Все авторы")
+        private void UpdateBooks(string authorFilter = "Все авторы", string genreFilter = "Все жанры")
         {
-            if (Logic.IsGenre) DataGridUser.Columns.Add("column4", "Жанр");
-
             string query = Queries.GetAllAvailableBooks(Logic.IsGenre);
             if (authorFilter != "Все авторы")
             {
                 query = Queries.GetAllAvailableBooksByAuthor(Logic.IsGenre, authorFilter);
+            }
+            if (genreFilter != "Все жанры")
+            {
+                query = Queries.GetAllAvailableBooksByGenre(genreFilter);
             }
 
             DataGridUser.Rows.Clear();
@@ -121,15 +134,23 @@ namespace home_library
 
         private void GetBook_Click(object sender, EventArgs e)
         {
-            string title = DataGridUser.SelectedRows[0].Cells[0].Value.ToString() ?? "";
-            string author = DataGridUser.SelectedRows[0].Cells[1].Value.ToString() ?? "";
-            string publication_year = DataGridUser.SelectedRows[0].Cells[2].Value.ToString() ?? "";
+            var row = DataGridUser.SelectedRows[0];
+
+            string title = row.Cells[0].Value?.ToString() ?? "";
+            string author = row.Cells[1].Value?.ToString() ?? "";
+            string publication_year = row.Cells[2].Value?.ToString() ?? "";
+
+            if (title.Length == 0 && author.Length == 0 && publication_year.Length == 0)
+            {
+                MessageBox.Show("Выберите книгу...", "Error!");
+                return;
+            }
 
             string message = $"Добрый день. Пользователь {UserLogic.Username} отправил завку на взятие книги " +
                 $"{title} {author} {publication_year}г. Рассимотрите заявку в ближайше возможное время. Спасибо.";
 
-            //try
-            //{
+            try
+            {
                 Logic.SendMail(message, "Заявка на взятие книги");
 
                 string query = Queries.AddUserTakeApply(UserLogic.Username, title);
@@ -137,11 +158,11 @@ namespace home_library
                 command.ExecuteNonQuery();
 
                 MessageBox.Show("Ваша заявка на взятие книги успешно отправлена! Ждите одобрения администратором.", "Успех!");
-            //}
-            //catch
-            //{
-            //    MessageBox.Show("Что-то пошло не так. Попробуйте снова позже.", "Error!");
-            //}
+            }
+            catch
+            {
+                MessageBox.Show("Что-то пошло не так. Попробуйте снова позже.", "Error!");
+            }
         }
     }
 }

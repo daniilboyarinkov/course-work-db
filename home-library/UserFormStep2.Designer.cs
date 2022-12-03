@@ -30,6 +30,7 @@
         {
             this.ActionBtn = new System.Windows.Forms.Button();
             this.DataGridUser = new System.Windows.Forms.DataGridView();
+            this.Title = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.DataGridUser)).BeginInit();
             this.SuspendLayout();
             // 
@@ -60,17 +61,27 @@
             this.DataGridUser.Size = new System.Drawing.Size(653, 242);
             this.DataGridUser.TabIndex = 4;
             // 
+            // Title
+            // 
+            this.Title.AutoSize = true;
+            this.Title.Location = new System.Drawing.Point(374, 37);
+            this.Title.Name = "Title";
+            this.Title.Size = new System.Drawing.Size(0, 15);
+            this.Title.TabIndex = 6;
+            // 
             // UserFormStep2
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.Title);
             this.Controls.Add(this.ActionBtn);
             this.Controls.Add(this.DataGridUser);
             this.Name = "UserFormStep2";
             this.Text = "UserFormStep2";
             ((System.ComponentModel.ISupportInitialize)(this.DataGridUser)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -78,5 +89,6 @@
 
         private Button ActionBtn;
         private DataGridView DataGridUser;
+        private Label Title;
     }
 }

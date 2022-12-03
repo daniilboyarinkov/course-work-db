@@ -29,13 +29,14 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.radioButton1 = new System.Windows.Forms.RadioButton();
             this.radioButton4 = new System.Windows.Forms.RadioButton();
             this.radioButton3 = new System.Windows.Forms.RadioButton();
             this.radioButton2 = new System.Windows.Forms.RadioButton();
             this.Add = new System.Windows.Forms.Button();
             this.Delete = new System.Windows.Forms.Button();
             this.Change = new System.Windows.Forms.Button();
-            this.radioButton1 = new System.Windows.Forms.RadioButton();
+            this.historyBtn = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -50,15 +51,28 @@
             this.groupBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.groupBox1.Size = new System.Drawing.Size(246, 196);
+            this.groupBox1.Size = new System.Drawing.Size(217, 175);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
+            // 
+            // radioButton1
+            // 
+            this.radioButton1.AutoSize = true;
+            this.radioButton1.Font = new System.Drawing.Font("Segoe UI", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.radioButton1.Location = new System.Drawing.Point(6, 142);
+            this.radioButton1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.radioButton1.Name = "radioButton1";
+            this.radioButton1.Size = new System.Drawing.Size(163, 29);
+            this.radioButton1.TabIndex = 4;
+            this.radioButton1.TabStop = true;
+            this.radioButton1.Text = "Админ коллегия";
+            this.radioButton1.UseVisualStyleBackColor = true;
             // 
             // radioButton4
             // 
             this.radioButton4.AutoSize = true;
             this.radioButton4.Font = new System.Drawing.Font("Segoe UI", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.radioButton4.Location = new System.Drawing.Point(39, 96);
+            this.radioButton4.Location = new System.Drawing.Point(6, 109);
             this.radioButton4.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.radioButton4.Name = "radioButton4";
             this.radioButton4.Size = new System.Drawing.Size(81, 29);
@@ -71,7 +85,7 @@
             // 
             this.radioButton3.AutoSize = true;
             this.radioButton3.Font = new System.Drawing.Font("Segoe UI", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.radioButton3.Location = new System.Drawing.Point(39, 66);
+            this.radioButton3.Location = new System.Drawing.Point(6, 79);
             this.radioButton3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.radioButton3.Name = "radioButton3";
             this.radioButton3.Size = new System.Drawing.Size(144, 29);
@@ -84,7 +98,7 @@
             // 
             this.radioButton2.AutoSize = true;
             this.radioButton2.Font = new System.Drawing.Font("Segoe UI", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.radioButton2.Location = new System.Drawing.Point(39, 37);
+            this.radioButton2.Location = new System.Drawing.Point(6, 50);
             this.radioButton2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.radioButton2.Name = "radioButton2";
             this.radioButton2.Size = new System.Drawing.Size(76, 29);
@@ -98,7 +112,7 @@
             // 
             this.Add.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.Add.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.Add.Location = new System.Drawing.Point(381, 19);
+            this.Add.Location = new System.Drawing.Point(247, 29);
             this.Add.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Add.Name = "Add";
             this.Add.Size = new System.Drawing.Size(96, 34);
@@ -111,7 +125,7 @@
             // 
             this.Delete.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.Delete.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.Delete.Location = new System.Drawing.Point(381, 57);
+            this.Delete.Location = new System.Drawing.Point(247, 67);
             this.Delete.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Delete.Name = "Delete";
             this.Delete.Size = new System.Drawing.Size(96, 34);
@@ -124,7 +138,7 @@
             // 
             this.Change.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.Change.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.Change.Location = new System.Drawing.Point(381, 95);
+            this.Change.Location = new System.Drawing.Point(247, 105);
             this.Change.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Change.Name = "Change";
             this.Change.Size = new System.Drawing.Size(96, 34);
@@ -133,24 +147,24 @@
             this.Change.UseVisualStyleBackColor = true;
             this.Change.Click += new System.EventHandler(this.Change_Click);
             // 
-            // radioButton1
+            // historyBtn
             // 
-            this.radioButton1.AutoSize = true;
-            this.radioButton1.Font = new System.Drawing.Font("Segoe UI", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.radioButton1.Location = new System.Drawing.Point(39, 129);
-            this.radioButton1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.radioButton1.Name = "radioButton1";
-            this.radioButton1.Size = new System.Drawing.Size(163, 29);
-            this.radioButton1.TabIndex = 4;
-            this.radioButton1.TabStop = true;
-            this.radioButton1.Text = "Админ коллегия";
-            this.radioButton1.UseVisualStyleBackColor = true;
+            this.historyBtn.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.historyBtn.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.historyBtn.Location = new System.Drawing.Point(24, 237);
+            this.historyBtn.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.historyBtn.Name = "historyBtn";
+            this.historyBtn.Size = new System.Drawing.Size(217, 34);
+            this.historyBtn.TabIndex = 4;
+            this.historyBtn.Text = "История";
+            this.historyBtn.UseVisualStyleBackColor = true;
             // 
             // AdminForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(652, 282);
+            this.Controls.Add(this.historyBtn);
             this.Controls.Add(this.Change);
             this.Controls.Add(this.Delete);
             this.Controls.Add(this.Add);
@@ -174,5 +188,6 @@
         private Button Delete;
         private Button Change;
         private RadioButton radioButton1;
+        private Button historyBtn;
     }
 }
