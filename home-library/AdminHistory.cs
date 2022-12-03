@@ -1,5 +1,7 @@
 ﻿
 
+using System.Data.OleDb;
+
 namespace home_library
 {
     public partial class AdminHistory : Form
@@ -66,12 +68,14 @@ namespace home_library
             string query = Queries.GetAllAuthors();
             List<List<string>> data = Logic.ExecuteQuery(query);
             return data.Select(d => d[0]).ToArray();
-        }private string[] GetAllGenres()
+        }
+        private string[] GetAllGenres()
         {
             string query = Queries.GetAllGenres();
             List<List<string>> data = Logic.ExecuteQuery(query);
             return data.Select(d => d[0]).ToArray();
-        }private string[] GetAllReaders()
+        }
+        private string[] GetAllReaders()
         {
             string query = Queries.GetAllReaders();
             List<List<string>> data = Logic.ExecuteQuery(query);
@@ -120,7 +124,7 @@ namespace home_library
             }
             else if (step == "take_applies")
             {
-                if (GenreFilter.Text == "Все жанры") query = Queries.GetAllHistory();
+                if (GenreFilter.Text == "Все жанры") query = Queries.GetAllApplies();
                 else query = Queries.GetAllAppliesByGenre(GenreFilter.Text.Trim());
             }
             else
@@ -148,7 +152,7 @@ namespace home_library
             }
             else if (step == "take_applies")
             {
-                if (UserFilter.Text == "Все читатели") query = Queries.GetAllHistory();
+                if (UserFilter.Text == "Все читатели") query = Queries.GetAllApplies();
                 else query = Queries.GetAlAppliesByReader(UserFilter.Text.Trim());
             }
             else
@@ -160,6 +164,61 @@ namespace home_library
             DataGridUser.Rows.Clear();
             List<List<string>> rows = Logic.ExecuteQuery(query);
             rows.ForEach(row => DataGridUser.Rows.Add(row.ToArray()));
+        }
+
+        private void SubmitBtn_Click(object sender, EventArgs e)
+        {
+            var row = DataGridUser.SelectedRows[0];
+
+            string title = row.Cells[0].Value?.ToString()?.Trim() ?? "";
+            string reader = row.Cells[1].Value?.ToString()?.Trim() ?? "";
+
+            if (title.Length == 0 && reader.Length == 0)
+            {
+                MessageBox.Show("Выберите запись...", "Error!");
+                return;
+            }
+
+            try
+            {
+                string query = Queries.AddUserTakeLibraryMarker(title);
+                OleDbCommand command = new(query, Logic.Connection);
+                command.ExecuteNonQuery();
+
+                query = Queries.AddUserTakenBook(title, reader);
+                command = new(query, Logic.Connection);
+                command.ExecuteNonQuery();
+
+                query = Queries.RemoveUserTakeApply(reader, title);
+                command = new(query, Logic.Connection);
+                command.ExecuteNonQuery();
+
+                UpdateBooks();
+            }
+            catch
+            {
+                MessageBox.Show("Что-то пошло не так. Попробуйте снова позже.", "Error!");
+            }
+        }
+
+        private void RejectBtn_Click(object sender, EventArgs e)
+        {
+            var row = DataGridUser.SelectedRows[0];
+
+            string title = row.Cells[0].Value?.ToString()?.Trim() ?? "";
+            string reader = row.Cells[1].Value?.ToString()?.Trim() ?? "";
+
+            if (title.Length == 0 && reader.Length == 0)
+            {
+                MessageBox.Show("Выберите запись...", "Error!");
+                return;
+            }
+
+            string query = Queries.RemoveUserTakeApply(reader, title);
+            OleDbCommand command = new(query, Logic.Connection);
+            command.ExecuteNonQuery();
+
+            UpdateBooks();
         }
     }
 }

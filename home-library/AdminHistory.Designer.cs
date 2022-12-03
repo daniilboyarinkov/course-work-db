@@ -71,6 +71,7 @@
             this.SubmitBtn.TabIndex = 6;
             this.SubmitBtn.Text = "Одобрить";
             this.SubmitBtn.UseVisualStyleBackColor = false;
+            this.SubmitBtn.Click += new System.EventHandler(this.SubmitBtn_Click);
             // 
             // RejectBtn
             // 
@@ -85,6 +86,7 @@
             this.RejectBtn.TabIndex = 7;
             this.RejectBtn.Text = "Отказать";
             this.RejectBtn.UseVisualStyleBackColor = false;
+            this.RejectBtn.Click += new System.EventHandler(this.RejectBtn_Click);
             // 
             // label1
             // 

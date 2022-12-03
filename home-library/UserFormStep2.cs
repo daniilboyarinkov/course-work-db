@@ -84,6 +84,12 @@ namespace home_library
             //string genre = "";
             //if (Logic.IsGenre) genre = row.Cells[5].Value?.ToString() ?? "";
 
+            if (title.Length == 0)
+            {
+                MessageBox.Show("Выберите книгу...", "Error!");
+                return;
+            }
+
             try
             {
                 string query = Queries.RemoveUserTakeLibraryMarker(title);
