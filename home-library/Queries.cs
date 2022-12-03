@@ -110,19 +110,35 @@ namespace home_library
             $"WHERE (Month(authors.birth_date) = Month(Date())) " +
             $"AND ((Day(authors.birth_date) = Day(Date())));";
 
+        public static string CheckUsersBirthDay(string username) => 
+            $"SELECT readers.reader_name " +
+            $"FROM readers " +
+            $"WHERE (Month(readers.birth_date) = Month(Date())) " +
+            $"AND ((Day(readers.birth_date) = Day(Date())) " +
+            $"AND (readers.reader_name=\"{username}\") ); ";
+
         // просрочка
         public static string GetDeptedBooks() => 
             $"SELECT books.title, readers.reader_name, taken_books.taken_date, taken_books.return_date, DateDiff(\"d\",taken_books.return_date,Date()) AS dept " +
             $"FROM readers INNER JOIN (books INNER JOIN taken_books ON books.book_id = taken_books.book) ON readers.reader_id = taken_books.reader " +
             $"WHERE (((taken_books.return_date)<Date())); ";
+        public static string GetUserDeptedBooks(string username) =>
+            $"SELECT books.title, taken_books.taken_date, taken_books.return_date, DateDiff(\"d\",taken_books.return_date,Date()) AS dept " +
+            $"FROM readers INNER JOIN (books INNER JOIN taken_books ON books.book_id = taken_books.book) ON readers.reader_id = taken_books.reader " +
+            $"WHERE (((taken_books.return_date)<Date())) AND  readers.reader_name=\"{username}\"; ";
 
-        public static string AddUserTakeApply(int readerId, int bookId) => 
-            $"INSERT INTO take_applies ( reader, book, apply_date ) VALUES ({readerId}, {bookId}, Date());";
+        // для юзера
+        public static string AddUserTakeApply(string username, string title) => 
+            $"INSERT INTO  take_applies( reader, book, apply_date ) " +
+            $"SELECT readers.reader_id, books.book_id, DATE() " +
+            $"FROM books, readers " +
+            $"WHERE readers.reader_name=\"{username}\" AND books.title=\"{title}\";";
         public static string RemoveUserTakeApply(string username, string title) =>
             $"DELETE readers.reader_name, books.title, take_applies.* " +
             $"FROM readers INNER JOIN (books INNER JOIN take_applies ON books.book_id = take_applies.book) ON readers.reader_id = take_applies.reader " +
             $"WHERE (((readers.reader_name)=\"{username}\") AND ((books.title)=\"{title}\")); ";
 
+        // для админа
         public static string AddUserTakeLibraryMarker(string title) => 
             $"UPDATE books INNER JOIN library ON books.book_id = library.book SET library.taken = True " +
             $"WHERE (((books.title)=\"{title}\")); ";
@@ -140,12 +156,18 @@ namespace home_library
             $"WHERE (((books.title)=\"{title}\") AND ((readers.reader_name)=\"{username}\")); ";
 
         // злосчастный жанр
-        public static string AddGenreTable() => $"CREATE TABLE genres ( genre_id counter(1, 1) NOT NULL Primary key, genre_name CHAR(25) NOT NULL ) ";
-        public static string RemoveGenreTable() => $"DROP TABLE genres;";
-        public static string AddGenreBookField() => $"ALTER TABLE books ADD genre INT;";
-        public static string RemoveGenreBookField() => $" ALTER TABLE books DROP COLUMN genre;";
-        public static string AddGenreConnection() => $"ALTER TABLE books ADD CONSTRAINT genres FOREIGN KEY (genre) REFERENCES genres (genre_id) ;";
-        public static string RemoveGenreConnection() => $"alter table books drop constraint genres;";
+        public static string AddGenreTable() => 
+            $"CREATE TABLE genres ( genre_id counter(1, 1) NOT NULL Primary key, genre_name CHAR(25) NOT NULL ) ";
+        public static string RemoveGenreTable() => 
+            $"DROP TABLE genres;";
+        public static string AddGenreBookField() => 
+            $"ALTER TABLE books ADD genre INT;";
+        public static string RemoveGenreBookField() => 
+            $" ALTER TABLE books DROP COLUMN genre;";
+        public static string AddGenreConnection() => 
+            $"ALTER TABLE books ADD CONSTRAINT genres FOREIGN KEY (genre) REFERENCES genres (genre_id) ;";
+        public static string RemoveGenreConnection() => 
+            $"alter table books drop constraint genres;";
 
 
 

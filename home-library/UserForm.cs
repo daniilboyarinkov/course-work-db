@@ -1,5 +1,5 @@
 ﻿
-using System.Runtime.CompilerServices;
+using System.Data.OleDb;
 
 namespace home_library
 {
@@ -15,6 +15,43 @@ namespace home_library
             UpdateBooks();
             authors = GetAllAuthors();
             AddRadioButtonsFilters(authors);
+
+            CheckDate();
+        }
+
+        private void CheckDate()
+        {
+            CheckUserBirthDay();
+            CheckAuthorAnniversary();
+            CheckDeptBooks();
+        }
+
+        // проверка если у пользоваителя сегодня др
+        private void CheckUserBirthDay() 
+        {
+            string query = Queries.CheckUsersBirthDay(UserLogic.Username);
+            List<List<string>> rows = Logic.ExecuteQuery(query);
+            if (rows.Count == 0 || rows[0].Count == 0) return;
+
+            MessageBox.Show("С днем рождения!");
+        }
+        // авторы у которых сегодня день рождения
+        private void CheckAuthorAnniversary() 
+        {
+            string query = Queries.GetBirthdayAuthors();
+            List<List<string>> rows = Logic.ExecuteQuery(query);
+            if (rows.Count == 0 || rows[0].Count == 0) return;
+
+            foreach (var row in rows) MessageBox.Show(row[0]);
+        }
+        // проверка просрочки
+        private void CheckDeptBooks()
+        {
+            string query = Queries.GetUserDeptedBooks(UserLogic.Username);
+            List<List<string>> rows = Logic.ExecuteQuery(query);
+            if (rows.Count == 0 || rows[0].Count == 0) return;
+
+            foreach (var row in rows) MessageBox.Show(row[0]);
         }
 
         private string[] GetAllAuthors()
@@ -34,7 +71,8 @@ namespace home_library
             int i = 0;
             foreach (string author in authors)
             {
-                RadioButton button = new() { 
+                RadioButton button = new()
+                {
                     Text = author,
                     Name = author,
                     Location = new Point(7, 25 * i++ + 45)
@@ -79,37 +117,31 @@ namespace home_library
             UserFormStep2 userFormStep2 = new("user_history");
             userFormStep2.ShowDialog();
         }
-        
+
 
         private void GetBook_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Отправка сообщения на почту админа!");
+            string title = DataGridUser.SelectedRows[0].Cells[0].Value.ToString() ?? "";
+            string author = DataGridUser.SelectedRows[0].Cells[1].Value.ToString() ?? "";
+            string publication_year = DataGridUser.SelectedRows[0].Cells[2].Value.ToString() ?? "";
 
-            //string title = "";
-            //string fio = "";
-            //string publication = "";
-            //if (_isGenre)
+            string message = $"Добрый день. Пользователь {UserLogic.Username} отправил завку на взятие книги " +
+                $"{title} {author} {publication_year}г. Рассимотрите заявку в ближайше возможное время. Спасибо.";
+
+            //try
             //{
-            //    title = DataGridUser.SelectedRows[0].Cells[1].Value.ToString() ?? "";
-            //    fio = DataGridUser.SelectedRows[0].Cells[2].Value.ToString() ?? "";
-            //    publication = DataGridUser.SelectedRows[0].Cells[3].Value.ToString() ?? "";
+                Logic.SendMail(message, "Заявка на взятие книги");
+
+                string query = Queries.AddUserTakeApply(UserLogic.Username, title);
+                OleDbCommand command = new(query, Logic.Connection);
+                command.ExecuteNonQuery();
+
+                MessageBox.Show("Ваша заявка на взятие книги успешно отправлена! Ждите одобрения администратором.", "Успех!");
             //}
-            //else
+            //catch
             //{
-            //    title = DataGridUser.SelectedRows[0].Cells[0].Value.ToString() ?? "";
-            //    fio = DataGridUser.SelectedRows[0].Cells[1].Value.ToString() ?? "";
-            //    publication = DataGridUser.SelectedRows[0].Cells[2].Value.ToString() ?? "";
+            //    MessageBox.Show("Что-то пошло не так. Попробуйте снова позже.", "Error!");
             //}
-            //string query = "INSERT INTO library (book, reader, take_date, return_date, taken) " +
-            //    "SELECT DISTINCT books.book_id, readers.reader_id, DATE(), DateAdd('d', 14, DATE()), true " +
-            //    $"FROM books, readers WHERE books.title = '{title}' " +
-            //    $"AND books.publication_year = {Convert.ToInt32(publication)} AND readers.reader_name = '{name}'";
-
-            //OleDbCommand command = new OleDbCommand(query, _connection);
-            //command.ExecuteNonQuery();
-
-            //DataGridUser.Rows.RemoveAt(DataGridUser.SelectedRows[0].Index);
-
         }
     }
 }

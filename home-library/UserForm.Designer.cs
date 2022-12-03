@@ -45,10 +45,10 @@
             // 
             this.UserBooks.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.UserBooks.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.UserBooks.Location = new System.Drawing.Point(508, 9);
+            this.UserBooks.Location = new System.Drawing.Point(486, 244);
             this.UserBooks.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.UserBooks.Name = "UserBooks";
-            this.UserBooks.Size = new System.Drawing.Size(177, 38);
+            this.UserBooks.Size = new System.Drawing.Size(216, 38);
             this.UserBooks.TabIndex = 0;
             this.UserBooks.Text = "Мои книги";
             this.UserBooks.UseVisualStyleBackColor = true;
@@ -98,10 +98,10 @@
             // 
             this.GetBook.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.GetBook.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.GetBook.Location = new System.Drawing.Point(87, 243);
+            this.GetBook.Location = new System.Drawing.Point(104, 244);
             this.GetBook.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.GetBook.Name = "GetBook";
-            this.GetBook.Size = new System.Drawing.Size(180, 30);
+            this.GetBook.Size = new System.Drawing.Size(216, 38);
             this.GetBook.TabIndex = 2;
             this.GetBook.Text = "Взять книгу";
             this.GetBook.UseVisualStyleBackColor = true;
@@ -111,10 +111,10 @@
             // 
             this.ShowHistory.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.ShowHistory.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.ShowHistory.Location = new System.Drawing.Point(508, 51);
+            this.ShowHistory.Location = new System.Drawing.Point(486, 199);
             this.ShowHistory.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.ShowHistory.Name = "ShowHistory";
-            this.ShowHistory.Size = new System.Drawing.Size(177, 40);
+            this.ShowHistory.Size = new System.Drawing.Size(216, 40);
             this.ShowHistory.TabIndex = 3;
             this.ShowHistory.Text = "Моя история";
             this.ShowHistory.UseVisualStyleBackColor = true;
@@ -123,9 +123,9 @@
             // AuthorFilterBox
             // 
             this.AuthorFilterBox.Controls.Add(this.AllAuthorsRadioBtn);
-            this.AuthorFilterBox.Location = new System.Drawing.Point(485, 96);
+            this.AuthorFilterBox.Location = new System.Drawing.Point(486, 12);
             this.AuthorFilterBox.Name = "AuthorFilterBox";
-            this.AuthorFilterBox.Size = new System.Drawing.Size(216, 143);
+            this.AuthorFilterBox.Size = new System.Drawing.Size(216, 123);
             this.AuthorFilterBox.TabIndex = 4;
             this.AuthorFilterBox.TabStop = false;
             this.AuthorFilterBox.Text = "Фильтр по авторам";
@@ -146,7 +146,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(738, 285);
+            this.ClientSize = new System.Drawing.Size(738, 293);
             this.Controls.Add(this.AuthorFilterBox);
             this.Controls.Add(this.DataGridUser);
             this.Controls.Add(this.ShowHistory);

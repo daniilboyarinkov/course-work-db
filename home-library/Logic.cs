@@ -1,11 +1,16 @@
 ﻿using System.Data.OleDb;
+using System.Net.Mail;
+using System.Net;
 
 namespace home_library
 {
     public static class Logic
     {
         private static readonly string _connectString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=DB.mdb;";
+        private static readonly string _emailAdress = "boyarinkov.daniil@gmail.com";
+        private static readonly string _emailPsw = "futklkajignhagqx";
         public static OleDbConnection Connection { get; } = new OleDbConnection(_connectString);
+
 
         public static bool IsGenre { get; set; } = false;
 
@@ -54,5 +59,37 @@ namespace home_library
             return data;
         }
 
+        // Отправка сообщений на почту администратора
+        public static void SendMail(string message, string subject = "Сообщение от прекрасного приложения домашней библиотеки")
+        {
+            //MailAddress from = new(_emailAdress, "Home Library");
+            //MailAddress to = new(_emailAdress);
+            //MailMessage m = new(from, to)
+            //{
+            //    Subject = subject,
+            //    Body = message,
+            //    // письмо представляет код html
+            //    IsBodyHtml = true
+            //};
+            //// адрес smtp-сервера и порт, с которого будем отправлять письмо
+            //SmtpClient smtp = new("smtp.gmail.com", 587)
+            //{
+            //    Credentials = new NetworkCredential(_emailAdress, _emailPsw),
+            //    EnableSsl = true
+            //};
+            //smtp.Send(m);
+
+            using MailMessage mail = new MailMessage();
+            mail.From = new MailAddress(_emailAdress, "Home Library");
+            mail.To.Add(_emailAdress);
+            mail.Subject = subject;
+            mail.Body = message;
+            mail.IsBodyHtml = true;
+
+            using SmtpClient smtp = new SmtpClient("smtp.gmail.com", 587);
+            smtp.Credentials = new NetworkCredential(_emailAdress, _emailPsw);
+            smtp.EnableSsl = true;
+            smtp.Send(mail);
+        }
     }
 }
