@@ -113,3 +113,4 @@ C:\Users\sudlenia\Desktop\work\course-work\course-work-db\home-library\obj\Debug
 C:\Users\sudlenia\Desktop\work\course-work\course-work-db\home-library\obj\Debug\net6.0-windows\home_library.UserFormStep2.resources
 C:\Users\sudlenia\Desktop\work\course-work\course-work-db\home-library\obj\Debug\net6.0-windows\home_library.AdminFormStep2.resources
 C:\Users\sudlenia\Desktop\work\course-work\course-work-db\home-library\obj\Debug\net6.0-windows\home_library.AdminLoginForm.resources
+C:\Users\sudlenia\Desktop\work\course-work\course-work-db\home-library\obj\Debug\net6.0-windows\home_library.AdminHistory.resources

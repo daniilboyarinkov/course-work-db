@@ -60,5 +60,17 @@ namespace home_library
                 //this.UserGetBack.Visible = false;
             }
         }
+
+        private void TakeAppliesBtn_Click(object sender, EventArgs e)
+        {
+            AdminHistory adminHistory = new("take_applies");
+            adminHistory.ShowDialog();
+        }
+
+        private void historyBtn_Click_1(object sender, EventArgs e)
+        {
+            AdminHistory adminHistory = new("history");
+            adminHistory.ShowDialog();
+        }
     }
 }

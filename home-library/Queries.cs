@@ -36,8 +36,30 @@ namespace home_library
         public static string GetAllAvailableBooksByAuthor(bool isGenre, string author) =>
             $"{GetAllAvailableBooks(isGenre)[..^1]} AND (((authors.fio)=\"{author}\"));";
         // получить всю историю
-        public static string GetAllHistory() => $"SELECT books.title, readers.reader_name, history.take_date, history.return_date " +
-            $"FROM readers INNER JOIN (books INNER JOIN history ON books.book_id = history.book) ON readers.reader_id = history.reader;";
+        public static string GetAllHistory() => 
+            $"SELECT books.title, readers.reader_name, history.take_date, history.return_date " +
+            $"FROM genres INNER JOIN (authors INNER JOIN (readers INNER JOIN (books INNER JOIN history ON books.book_id = history.book) ON readers.reader_id = history.reader) ON authors.author_id = books.author) ON genres.genre_id = books.genre;";
+        public static string GetAllHistoryByAuthor(string author) =>
+            $"{GetAllHistory().Trim()[..^1]} WHERE (((authors.fio)=\"{author}\"));";
+
+        public static string GetAllHistoryByGenre(string genre) =>
+            $"{GetAllHistory().Trim()[..^1]} WHERE (((genres.genre_name)=\"{genre}\"));";
+
+        public static string GetAllHistoryByReader(string reader) =>
+            $"{GetAllHistory().Trim()[..^1]} WHERE (((readers.reader_name)=\"{reader}\"));";
+        // получить все заявки пользователей
+        public static string GetAllApplies() =>
+            $"SELECT books.title, readers.reader_name, take_applies.apply_date " +
+            $"FROM genres INNER JOIN (authors INNER JOIN (books INNER JOIN (readers INNER JOIN take_applies ON readers.reader_id = take_applies.reader) ON books.book_id = take_applies.book) ON authors.author_id = books.author) ON genres.genre_id = books.genre;";
+        public static string GetAllAppliesByAuthor(string author) =>
+            $"{GetAllApplies().Trim()[..^1]} WHERE (((authors.fio)=\"{author}\"));";
+
+        public static string GetAllAppliesByGenre(string genre) =>
+            $"{GetAllApplies().Trim()[..^1]} WHERE (((genres.genre_name)=\"{genre}\"));";
+
+        public static string GetAlAppliesByReader(string reader) =>
+            $"{GetAllApplies().Trim()[..^1]} WHERE (((readers.reader_name)=\"{reader}\"));";
+
         // получить все 
         public static string GetAllBooks() => $"SELECT books.title FROM books;";
         public static string GetAllGenres() => $"SELECT genres.genre_name FROM genres;";

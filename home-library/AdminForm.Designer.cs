@@ -37,6 +37,7 @@
             this.Delete = new System.Windows.Forms.Button();
             this.Change = new System.Windows.Forms.Button();
             this.historyBtn = new System.Windows.Forms.Button();
+            this.TakeAppliesBtn = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -158,12 +159,27 @@
             this.historyBtn.TabIndex = 4;
             this.historyBtn.Text = "История";
             this.historyBtn.UseVisualStyleBackColor = true;
+            this.historyBtn.Click += new System.EventHandler(this.historyBtn_Click_1);
+            // 
+            // TakeAppliesBtn
+            // 
+            this.TakeAppliesBtn.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.TakeAppliesBtn.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.TakeAppliesBtn.Location = new System.Drawing.Point(423, 237);
+            this.TakeAppliesBtn.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.TakeAppliesBtn.Name = "TakeAppliesBtn";
+            this.TakeAppliesBtn.Size = new System.Drawing.Size(217, 34);
+            this.TakeAppliesBtn.TabIndex = 5;
+            this.TakeAppliesBtn.Text = "Заявки читателей";
+            this.TakeAppliesBtn.UseVisualStyleBackColor = true;
+            this.TakeAppliesBtn.Click += new System.EventHandler(this.TakeAppliesBtn_Click);
             // 
             // AdminForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(652, 282);
+            this.Controls.Add(this.TakeAppliesBtn);
             this.Controls.Add(this.historyBtn);
             this.Controls.Add(this.Change);
             this.Controls.Add(this.Delete);
@@ -189,5 +205,6 @@
         private Button Change;
         private RadioButton radioButton1;
         private Button historyBtn;
+        private Button TakeAppliesBtn;
     }
 }
