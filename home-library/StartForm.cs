@@ -26,11 +26,13 @@ namespace home_library
             string query = $"SELECT reader_name FROM readers WHERE reader_name=\"{inputName}\"";
             OleDbCommand command = new(query, Logic.Connection);
             OleDbDataReader reader = command.ExecuteReader();
-            
+
+            bool valid = false;
             while (reader.Read())
             {
                 if (inputName == reader[0].ToString()?.ToLower())
                 {
+                    valid = true;
                     UserForm userForm = new(inputName);
                     // переводим основное окно в состо€ние невидимости
                     Visible = false;
@@ -45,6 +47,8 @@ namespace home_library
                     MessageBox.Show($"Ќет пользовател€ с именем {inputName}!");
                 }
             }
+            if (!valid) MessageBox.Show($"Ќет пользовател€ с именем {inputName}!");
+
             reader.Close();
         }
 
