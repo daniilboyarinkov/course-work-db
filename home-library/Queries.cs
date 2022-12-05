@@ -22,7 +22,7 @@ namespace home_library
             
         // история книг пользователя
         public static string GetUserHistory(string username) =>
-            $"SELECT books.title, authors.fio, books.publication_year, history.return_date " +
+            $"SELECT books.title, authors.fio, books.publication_year, history.take_date, history.return_date " +
             $"FROM readers INNER JOIN ((authors INNER JOIN books ON authors.author_id = books.author) " +
             $"INNER JOIN history ON books.book_id = history.book) ON readers.reader_id = history.reader " +
             $"WHERE (((readers.reader_name)=\"{username}\"));";
@@ -37,15 +37,15 @@ namespace home_library
             $"{GetAllAvailableBooks(isGenre)[..^1]} AND (((authors.fio)=\"{author}\"));";
         // получить всю историю
         public static string GetAllHistory() =>
-            $"SELECT books.title, readers.reader_name, history.return_date " +
+            $"SELECT books.title, readers.reader_name, history.take_date,  history.return_date " +
             $"FROM readers INNER JOIN (books INNER JOIN history ON books.book_id = history.book) ON readers.reader_id = history.reader; ";
         public static string GetAllHistoryByAuthor(string author) =>
-            $"SELECT books.title, readers.reader_name, history.return_date " +
+            $"SELECT books.title, readers.reader_name, history.take_date, history.return_date " +
             $"FROM authors INNER JOIN (readers INNER JOIN (books INNER JOIN history ON books.book_id = history.book) ON readers.reader_id = history.reader) ON authors.author_id = books.author" +
             $" WHERE (((authors.fio)=\"{author}\"));";
          
         public static string GetAllHistoryByGenre(string genre) =>
-            $"SELECT books.title, readers.reader_name, history.return_date " +
+            $"SELECT books.title, readers.reader_name, history.take_date, history.return_date " +
             $"FROM genres INNER JOIN (readers INNER JOIN (books INNER JOIN history ON books.book_id = history.book) ON readers.reader_id = history.reader) ON genres.genre_id = books.genre" +
             $" WHERE (((genres.genre_name)=\"{genre}\"));";
 
@@ -199,9 +199,9 @@ namespace home_library
 
         // добавить запись в историю
         public static string AddToHistory(string title, string username) =>
-            $"INSERT INTO history ( reader, book, return_date ) " +
-            $"SELECT readers.reader_id, books.book_id, Date() AS Выражение1 " +
-            $"FROM books, readers " +
+            $"INSERT INTO history ( reader, book, take_date, return_date ) " +
+            $"SELECT taken_books.reader, taken_books.book, taken_books.taken_date, Date() AS Выражение1 " +
+            $"FROM readers INNER JOIN (books INNER JOIN taken_books ON books.book_id = taken_books.book) ON readers.reader_id = taken_books.reader " +
             $"WHERE (((books.title)=\"{title}\") AND ((readers.reader_name)=\"{username}\"));";
         
         // злосчастный жанр

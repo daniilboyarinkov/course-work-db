@@ -20,7 +20,7 @@ namespace home_library
                 SubmitBtn.Visible = false;
                 RejectBtn.Visible = false;
 
-                //DataGridUser.Columns.Add("take_date", "Дата взятия");
+                DataGridUser.Columns.Add("take_date", "Дата взятия");
                 DataGridUser.Columns.Add("return_date", "Дата возвращения");
             }
             else if (step == "take_applies")

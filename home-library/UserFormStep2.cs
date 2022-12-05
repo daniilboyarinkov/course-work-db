@@ -14,9 +14,9 @@ namespace home_library
             DataGridUser.Columns.Add("title", "Название");
             DataGridUser.Columns.Add("author", "Автор");
             DataGridUser.Columns.Add("publication_year", "Год публикации");
+            DataGridUser.Columns.Add("take_date", "Взята");
             if (step == "user_books")
             {
-                DataGridUser.Columns.Add("take_date", "Взята");
                 DataGridUser.Columns.Add("return_date", "Вернуть до");
                 Title.Text = "Книги на руках";
                 ActionBtn.Text = "Вернуть";
@@ -29,7 +29,6 @@ namespace home_library
             }
             if (Logic.IsGenre) DataGridUser.Columns.Add("genre", "Жанр");
 
-
             UpdateBooks();
         }
         private void UpdateBooks()
@@ -37,13 +36,9 @@ namespace home_library
             string query = string.Empty;
 
             if (step == "user_books")
-            {
                 query = Queries.GetUserBooks(UserLogic.Username);
-            }
             else if (step == "user_history")
-            {
                 query = Queries.GetUserHistory(UserLogic.Username);
-            }
             else
             {
                 MessageBox.Show("Произошла непредвиденная ошибка");
