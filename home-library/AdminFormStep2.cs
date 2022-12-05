@@ -439,103 +439,107 @@ namespace home_library
             OleDbCommand command;
             List<List<string>> data;
 
-            try
+            DialogResult dialogResult = MessageBox.Show("Вы уверены, что хотите удалить значение?", "Подтверждение удаления", MessageBoxButtons.YesNo);
+            if (dialogResult == DialogResult.Yes)
             {
-                switch (state)
+                try
                 {
-                    case "жанр":
-                        string genre = groupBox1.Controls["genre_combobox"].Text;
+                    switch (state)
+                    {
+                        case "жанр":
+                            string genre = groupBox1.Controls["genre_combobox"].Text;
 
-                        query = Queries.DeleteGenre(genre);
-                        command = new(query, Logic.Connection);
-                        command.ExecuteNonQuery();
+                            query = Queries.DeleteGenre(genre);
+                            command = new(query, Logic.Connection);
+                            command.ExecuteNonQuery();
 
-                        // update combobox values
-                        ((ComboBox)groupBox1.Controls["genre_combobox"]).Items.Clear();
-                        ((ComboBox)groupBox1.Controls["genre_combobox"]).Text = "";
+                            // update combobox values
+                            ((ComboBox)groupBox1.Controls["genre_combobox"]).Items.Clear();
+                            ((ComboBox)groupBox1.Controls["genre_combobox"]).Text = "";
 
-                        query = Queries.GetAllGenres();
-                        data = Logic.ExecuteQuery(query);
-                        string[] genres = data.Select(d => d[0]).ToArray();
-                        ((ComboBox)groupBox1.Controls["genre_combobox"]).Items.AddRange(genres);
+                            query = Queries.GetAllGenres();
+                            data = Logic.ExecuteQuery(query);
+                            string[] genres = data.Select(d => d[0]).ToArray();
+                            ((ComboBox)groupBox1.Controls["genre_combobox"]).Items.AddRange(genres);
 
-                        break;
-                    case "книга":
-                        string title = groupBox1.Controls["title_combobox"].Text;
+                            break;
+                        case "книга":
+                            string title = groupBox1.Controls["title_combobox"].Text;
 
-                        query = Queries.DeleteBook(title);
-                        command = new(query, Logic.Connection);
-                        command.ExecuteNonQuery();
+                            query = Queries.DeleteBook(title);
+                            command = new(query, Logic.Connection);
+                            command.ExecuteNonQuery();
 
-                        // update combobox values
-                        ((ComboBox)groupBox1.Controls["title_combobox"]).Items.Clear();
-                        ((ComboBox)groupBox1.Controls["title_combobox"]).Text = "";
+                            // update combobox values
+                            ((ComboBox)groupBox1.Controls["title_combobox"]).Items.Clear();
+                            ((ComboBox)groupBox1.Controls["title_combobox"]).Text = "";
 
-                        query = Queries.GetAllBooks();
-                        data = Logic.ExecuteQuery(query);
-                        string[] books = data.Select(d => d[0]).ToArray();
-                        ((ComboBox)groupBox1.Controls["title_combobox"]).Items.AddRange(books);
+                            query = Queries.GetAllBooks();
+                            data = Logic.ExecuteQuery(query);
+                            string[] books = data.Select(d => d[0]).ToArray();
+                            ((ComboBox)groupBox1.Controls["title_combobox"]).Items.AddRange(books);
 
-                        break;
-                    case "пользователь":
-                        string username = groupBox1.Controls["name_combobox"].Text;
+                            break;
+                        case "пользователь":
+                            string username = groupBox1.Controls["name_combobox"].Text;
 
-                        query = Queries.DeleteReader(username);
-                        command = new(query, Logic.Connection);
-                        command.ExecuteNonQuery();
+                            query = Queries.DeleteReader(username);
+                            command = new(query, Logic.Connection);
+                            command.ExecuteNonQuery();
 
-                        // update combobox values
-                        ((ComboBox)groupBox1.Controls["name_combobox"]).Items.Clear();
-                        ((ComboBox)groupBox1.Controls["name_combobox"]).Text = "";
+                            // update combobox values
+                            ((ComboBox)groupBox1.Controls["name_combobox"]).Items.Clear();
+                            ((ComboBox)groupBox1.Controls["name_combobox"]).Text = "";
 
-                        query = Queries.GetAllReaders();
-                        data = Logic.ExecuteQuery(query);
-                        string[] readers = data.Select(d => d[0]).ToArray();
-                        ((ComboBox)groupBox1.Controls["name_combobox"]).Items.AddRange(readers);
+                            query = Queries.GetAllReaders();
+                            data = Logic.ExecuteQuery(query);
+                            string[] readers = data.Select(d => d[0]).ToArray();
+                            ((ComboBox)groupBox1.Controls["name_combobox"]).Items.AddRange(readers);
 
-                        break;
-                    case "автор":
-                        string fio = groupBox1.Controls["name_combobox"].Text;
+                            break;
+                        case "автор":
+                            string fio = groupBox1.Controls["name_combobox"].Text;
 
-                        query = Queries.DeleteAuthor(fio);
-                        command = new(query, Logic.Connection);
-                        command.ExecuteNonQuery();
+                            query = Queries.DeleteAuthor(fio);
+                            command = new(query, Logic.Connection);
+                            command.ExecuteNonQuery();
 
-                        // update combobox values
-                        ((ComboBox)groupBox1.Controls["name_combobox"]).Items.Clear();
-                        ((ComboBox)groupBox1.Controls["name_combobox"]).Text = "";
+                            // update combobox values
+                            ((ComboBox)groupBox1.Controls["name_combobox"]).Items.Clear();
+                            ((ComboBox)groupBox1.Controls["name_combobox"]).Text = "";
 
-                        query = Queries.GetAllAuthors();
-                        data = Logic.ExecuteQuery(query);
-                        string[] authors = data.Select(d => d[0]).ToArray();
-                        ((ComboBox)groupBox1.Controls["name_combobox"]).Items.AddRange(authors);
+                            query = Queries.GetAllAuthors();
+                            data = Logic.ExecuteQuery(query);
+                            string[] authors = data.Select(d => d[0]).ToArray();
+                            ((ComboBox)groupBox1.Controls["name_combobox"]).Items.AddRange(authors);
 
-                        break;
-                    case "админ коллегия":
-                        string admin = groupBox1.Controls["amdin_combobox"].Text;
+                            break;
+                        case "админ коллегия":
+                            string admin = groupBox1.Controls["amdin_combobox"].Text;
 
-                        query = Queries.DeleteAdmin(admin);
-                        command = new(query, Logic.Connection);
-                        command.ExecuteNonQuery();
+                            query = Queries.DeleteAdmin(admin);
+                            command = new(query, Logic.Connection);
+                            command.ExecuteNonQuery();
 
-                        // update combobox values
-                        ((ComboBox)groupBox1.Controls["amdin_combobox"]).Items.Clear();
-                        ((ComboBox)groupBox1.Controls["amdin_combobox"]).Text = "";
+                            // update combobox values
+                            ((ComboBox)groupBox1.Controls["amdin_combobox"]).Items.Clear();
+                            ((ComboBox)groupBox1.Controls["amdin_combobox"]).Text = "";
 
-                        query = Queries.GetAllAdminExceptYourself(AdminLogic.Login);
-                        data = Logic.ExecuteQuery(query);
-                        string[] admins = data.Select(d => d[0]).ToArray();
-                        ((ComboBox)groupBox1.Controls["amdin_combobox"]).Items.AddRange(admins);
+                            query = Queries.GetAllAdminExceptYourself(AdminLogic.Login);
+                            data = Logic.ExecuteQuery(query);
+                            string[] admins = data.Select(d => d[0]).ToArray();
+                            ((ComboBox)groupBox1.Controls["amdin_combobox"]).Items.AddRange(admins);
 
-                        break;
-                    default:
-                        break;
+                            break;
+                        default:
+                            break;
+                    }
+                    MessageBox.Show("Значение успешно удалено", "Успех!");
                 }
-                MessageBox.Show("Значение успешно удалено", "Успех!");
-            }
-            catch
-            {
-                MessageBox.Show("Error!");
+                catch
+                {
+                    MessageBox.Show("Error!");
+                }
             }
         }
         private void ChangeAction()

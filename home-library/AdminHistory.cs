@@ -1,6 +1,4 @@
-﻿
-
-using System.Data.OleDb;
+﻿using System.Data.OleDb;
 
 namespace home_library
 {
@@ -22,7 +20,7 @@ namespace home_library
                 SubmitBtn.Visible = false;
                 RejectBtn.Visible = false;
 
-                DataGridUser.Columns.Add("take_date", "Дата взятия");
+                //DataGridUser.Columns.Add("take_date", "Дата взятия");
                 DataGridUser.Columns.Add("return_date", "Дата возвращения");
             }
             else if (step == "take_applies")
@@ -31,12 +29,24 @@ namespace home_library
 
                 DataGridUser.Columns.Add("apply_date", "Дата заявки");
             }
+            else if (step == "dept")
+            {
+                Title.Text = "Просроченные книги";
 
-            AuthorFilter.Items.AddRange((new string[] { "Все авторы" }).Concat(GetAllAuthors()).ToArray());
+                SubmitBtn.Visible = false;
+                RejectBtn.Visible = false;
 
-            GenreFilter.Items.AddRange((new string[] { "Все жанры" }).Concat(GetAllGenres()).ToArray());
+                DataGridUser.Columns.Add("taken_date", "Дата взятия");
+                DataGridUser.Columns.Add("return_date", "Дата возвращения");
+                DataGridUser.Columns.Add("dept_count", "Задолжность дней...");
+            }
 
-            UserFilter.Items.AddRange((new string[] { "Все читатели" }).Concat(GetAllReaders()).ToArray());
+            AuthorFilter.Items.AddRange((new string[] { "Все авторы" })
+                .Concat(Logic.GetAllAuthors()).ToArray());
+            GenreFilter.Items.AddRange((new string[] { "Все жанры" })
+                .Concat(Logic.GetAllGenres()).ToArray());
+            UserFilter.Items.AddRange((new string[] { "Все читатели" })
+                .Concat(Logic.GetAllReaders()).ToArray());
 
             UpdateBooks();
         }
@@ -45,13 +55,11 @@ namespace home_library
             string query = string.Empty;
 
             if (step == "history")
-            {
                 query = Queries.GetAllHistory();
-            }
             else if (step == "take_applies")
-            {
                 query = Queries.GetAllApplies();
-            }
+            else if (step == "dept")
+                query = Queries.GetDeptedBooks();
             else
             {
                 MessageBox.Show("Произошла непредвиденная ошибка");
@@ -59,27 +67,8 @@ namespace home_library
             }
 
             DataGridUser.Rows.Clear();
-            List<List<string>> rows = Logic.ExecuteQuery(query);
-            rows.ForEach(row => DataGridUser.Rows.Add(row.ToArray()));
-        }
-
-        private string[] GetAllAuthors()
-        {
-            string query = Queries.GetAllAuthors();
-            List<List<string>> data = Logic.ExecuteQuery(query);
-            return data.Select(d => d[0]).ToArray();
-        }
-        private string[] GetAllGenres()
-        {
-            string query = Queries.GetAllGenres();
-            List<List<string>> data = Logic.ExecuteQuery(query);
-            return data.Select(d => d[0]).ToArray();
-        }
-        private string[] GetAllReaders()
-        {
-            string query = Queries.GetAllReaders();
-            List<List<string>> data = Logic.ExecuteQuery(query);
-            return data.Select(d => d[0]).ToArray();
+            Logic.ExecuteQuery(query)
+                .ForEach(row => DataGridUser.Rows.Add(row.ToArray()));
         }
 
         private void AuthorFilter_SelectedIndexChanged(object sender, EventArgs e)
@@ -99,6 +88,11 @@ namespace home_library
                 if (AuthorFilter.Text == "Все авторы") query = Queries.GetAllApplies();
                 else query = Queries.GetAllAppliesByAuthor(AuthorFilter.Text.Trim());
             }
+            else if (step == "dept")
+            {
+                if (AuthorFilter.Text == "Все авторы") query = Queries.GetDeptedBooks();
+                else query = Queries.GetDeptedBooksByAuthor(AuthorFilter.Text.Trim());
+            }
             else
             {
                 MessageBox.Show("Произошла непредвиденная ошибка");
@@ -106,8 +100,8 @@ namespace home_library
             }
 
             DataGridUser.Rows.Clear();
-            List<List<string>> rows = Logic.ExecuteQuery(query);
-            rows.ForEach(row => DataGridUser.Rows.Add(row.ToArray()));
+            Logic.ExecuteQuery(query)
+                .ForEach(row => DataGridUser.Rows.Add(row.ToArray()));
         }
 
         private void GenreFilter_SelectedIndexChanged(object sender, EventArgs e)
@@ -126,6 +120,11 @@ namespace home_library
             {
                 if (GenreFilter.Text == "Все жанры") query = Queries.GetAllApplies();
                 else query = Queries.GetAllAppliesByGenre(GenreFilter.Text.Trim());
+            }
+            else if (step == "dept")
+            {
+                if (GenreFilter.Text == "Все жанры") query = Queries.GetDeptedBooks();
+                else query = Queries.GetDeptedBooksByGenre(GenreFilter.Text.Trim());
             }
             else
             {
@@ -155,6 +154,11 @@ namespace home_library
                 if (UserFilter.Text == "Все читатели") query = Queries.GetAllApplies();
                 else query = Queries.GetAlAppliesByReader(UserFilter.Text.Trim());
             }
+            else if (step == "dept")
+            {
+                if (UserFilter.Text == "Все читатели") query = Queries.GetDeptedBooks();
+                else query = Queries.GetDeptedBooksByUser(UserFilter.Text.Trim());
+            }
             else
             {
                 MessageBox.Show("Произошла непредвиденная ошибка");
@@ -168,6 +172,12 @@ namespace home_library
 
         private void SubmitBtn_Click(object sender, EventArgs e)
         {
+            if (DataGridUser.SelectedRows.Count == 0)
+            {
+                MessageBox.Show("Выберите запись...", "Error!");
+                return;
+            }
+
             var row = DataGridUser.SelectedRows[0];
 
             string title = row.Cells[0].Value?.ToString()?.Trim() ?? "";
@@ -181,11 +191,11 @@ namespace home_library
 
             try
             {
-                string query = Queries.AddUserTakeLibraryMarker(title);
+                string query = Queries.AddLibriryMarker(title);
                 OleDbCommand command = new(query, Logic.Connection);
                 command.ExecuteNonQuery();
 
-                query = Queries.AddUserTakenBook(title, reader);
+                query = Queries.AddToTakenBooks(title, reader);
                 command = new(query, Logic.Connection);
                 command.ExecuteNonQuery();
 

@@ -58,6 +58,31 @@ namespace home_library
 
             return data;
         }
+        // выполняет запрос но ничего не взвращает
+        public static void ExecuteNonQuery(string query)
+        {
+            OleDbCommand command = new(query, Connection);
+            command.ExecuteNonQuery();
+        }
+
+        public static string[] GetAllAuthors()
+        {
+            string query = Queries.GetAllAuthors();
+            List<List<string>> data = Logic.ExecuteQuery(query);
+            return data.Select(d => d[0]).ToArray();
+        }
+        public static string[] GetAllGenres()
+        {
+            string query = Queries.GetAllGenres();
+            List<List<string>> data = Logic.ExecuteQuery(query);
+            return data.Select(d => d[0]).ToArray();
+        }
+        public static string[] GetAllReaders()
+        {
+            string query = Queries.GetAllReaders();
+            List<List<string>> data = Logic.ExecuteQuery(query);
+            return data.Select(d => d[0]).ToArray();
+        }
 
         // Отправка сообщений на почту администратора
         public static void SendMail(string message, string subject = "Сообщение от прекрасного приложения домашней библиотеки")

@@ -52,6 +52,7 @@
             // 
             this.AdminButton.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.AdminButton.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.AdminButton.ForeColor = System.Drawing.SystemColors.ControlDark;
             this.AdminButton.Location = new System.Drawing.Point(245, 172);
             this.AdminButton.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.AdminButton.Name = "AdminButton";
@@ -65,7 +66,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label1.Location = new System.Drawing.Point(95, 89);
+            this.label1.Location = new System.Drawing.Point(103, 89);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(41, 21);
             this.label1.TabIndex = 2;
@@ -75,6 +76,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Segoe UI", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
             this.label2.Location = new System.Drawing.Point(110, 23);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(224, 28);

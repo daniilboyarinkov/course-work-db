@@ -1,5 +1,6 @@
 ﻿
 using System.Data.OleDb;
+using System.Linq;
 
 namespace home_library
 {
@@ -13,7 +14,7 @@ namespace home_library
             UserLogic.Username = name;
 
             UpdateBooks();
-            authors = GetAllAuthors();
+            authors = Logic.GetAllAuthors();
             AddRadioButtonsFilters(authors);
             if (Logic.IsGenre) DataGridUser.Columns.Add("column4", "Жанр");
 
@@ -64,15 +65,9 @@ namespace home_library
 
             foreach (var row in rows) MessageBox.Show(row[0]);
         }
-
-        private string[] GetAllAuthors()
-        {
-            string query = Queries.GetAllAuthors();
-            List<List<string>> data = Logic.ExecuteQuery(query);
-            return data.Select(d => d[0]).ToArray();
-        }
         private void AddRadioButtonsFilters(string[] authors)
         {
+            // add change handlers on every btn
             AllAuthorsRadioBtn.CheckedChanged += (o, args) =>
             {
                 if (AllAuthorsRadioBtn.Checked)
@@ -86,7 +81,8 @@ namespace home_library
                 {
                     Text = author,
                     Name = author,
-                    Location = new Point(7, 25 * i++ + 45)
+                    Location = new Point(7, 25 * i++ + 45),
+                    Width = 200
                 };
                 button.CheckedChanged += (o, args) =>
                 {
@@ -100,35 +96,36 @@ namespace home_library
 
         private void UserForm_FormClosing(object sender, FormClosingEventArgs e)
         {
-            if (Logic.IsGenre) DataGridUser.Columns.Remove("column4");
         }
 
         private void UpdateBooks(string authorFilter = "Все авторы", string genreFilter = "Все жанры")
         {
             string query = Queries.GetAllAvailableBooks(Logic.IsGenre);
+
             if (authorFilter != "Все авторы")
-            {
                 query = Queries.GetAllAvailableBooksByAuthor(Logic.IsGenre, authorFilter);
-            }
             if (genreFilter != "Все жанры")
-            {
                 query = Queries.GetAllAvailableBooksByGenre(genreFilter);
-            }
 
             DataGridUser.Rows.Clear();
-            List<List<string>> rows = Logic.ExecuteQuery(query);
-            rows.ForEach(row => DataGridUser.Rows.Add(row.ToArray()));
+
+            Logic.ExecuteQuery(query)
+               .ForEach(row => DataGridUser.Rows.Add(row.ToArray()));
         }
 
         private void UserBooks_Click(object sender, EventArgs e)
         {
             UserFormStep2 userFormStep2 = new("user_books");
             userFormStep2.ShowDialog();
+            // возвращаемся - получаем актуальные данные
+            UpdateBooks();
         }
         private void ShowHistory_Click(object sender, EventArgs e)
         {
             UserFormStep2 userFormStep2 = new("user_history");
             userFormStep2.ShowDialog();
+            // возвращаемся - получаем актуальные данные
+            UpdateBooks();
         }
 
 
@@ -146,16 +143,15 @@ namespace home_library
                 return;
             }
 
-            string message = $"Добрый день. Пользователь {UserLogic.Username} отправил завку на взятие книги " +
-                $"{title} {author} {publication_year}г. Рассимотрите заявку в ближайше возможное время. Спасибо.";
+            string message = $"Добрый день. \n\nПользователь <b>{UserLogic.Username}</b> отправил завку на взятие книги " +
+                $"{title} {author} {publication_year}г. \n\nРассимотрите заявку в ближайше возможное время. \nСпасибо.";
 
             try
             {
-                Logic.SendMail(message, "Заявка на взятие книги");
+                //Logic.SendMail(message, "Заявка на взятие книги");
 
                 string query = Queries.AddUserTakeApply(UserLogic.Username, title);
-                OleDbCommand command = new(query, Logic.Connection);
-                command.ExecuteNonQuery();
+                Logic.ExecuteNonQuery(query);
 
                 MessageBox.Show("Ваша заявка на взятие книги успешно отправлена! Ждите одобрения администратором.", "Успех!");
             }

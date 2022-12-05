@@ -22,7 +22,7 @@ namespace home_library
             
         // история книг пользователя
         public static string GetUserHistory(string username) =>
-            $"SELECT books.title, books.author, books.publication_year, history.take_date, history.return_date " +
+            $"SELECT books.title, authors.fio, books.publication_year, history.return_date " +
             $"FROM readers INNER JOIN ((authors INNER JOIN books ON authors.author_id = books.author) " +
             $"INNER JOIN history ON books.book_id = history.book) ON readers.reader_id = history.reader " +
             $"WHERE (((readers.reader_name)=\"{username}\"));";
@@ -36,26 +36,34 @@ namespace home_library
         public static string GetAllAvailableBooksByAuthor(bool isGenre, string author) =>
             $"{GetAllAvailableBooks(isGenre)[..^1]} AND (((authors.fio)=\"{author}\"));";
         // получить всю историю
-        public static string GetAllHistory() => 
-            $"SELECT books.title, readers.reader_name, history.take_date, history.return_date " +
-            $"FROM genres INNER JOIN (authors INNER JOIN (readers INNER JOIN (books INNER JOIN history ON books.book_id = history.book) ON readers.reader_id = history.reader) ON authors.author_id = books.author) ON genres.genre_id = books.genre;";
+        public static string GetAllHistory() =>
+            $"SELECT books.title, readers.reader_name, history.return_date " +
+            $"FROM readers INNER JOIN (books INNER JOIN history ON books.book_id = history.book) ON readers.reader_id = history.reader; ";
         public static string GetAllHistoryByAuthor(string author) =>
-            $"{GetAllHistory().Trim()[..^1]} WHERE (((authors.fio)=\"{author}\"));";
-
+            $"SELECT books.title, readers.reader_name, history.return_date " +
+            $"FROM authors INNER JOIN (readers INNER JOIN (books INNER JOIN history ON books.book_id = history.book) ON readers.reader_id = history.reader) ON authors.author_id = books.author" +
+            $" WHERE (((authors.fio)=\"{author}\"));";
+         
         public static string GetAllHistoryByGenre(string genre) =>
-            $"{GetAllHistory().Trim()[..^1]} WHERE (((genres.genre_name)=\"{genre}\"));";
+            $"SELECT books.title, readers.reader_name, history.return_date " +
+            $"FROM genres INNER JOIN (readers INNER JOIN (books INNER JOIN history ON books.book_id = history.book) ON readers.reader_id = history.reader) ON genres.genre_id = books.genre" +
+            $" WHERE (((genres.genre_name)=\"{genre}\"));";
 
         public static string GetAllHistoryByReader(string reader) =>
             $"{GetAllHistory().Trim()[..^1]} WHERE (((readers.reader_name)=\"{reader}\"));";
         // получить все заявки пользователей
         public static string GetAllApplies() =>
             $"SELECT books.title, readers.reader_name, take_applies.apply_date " +
-            $"FROM genres INNER JOIN (authors INNER JOIN (books INNER JOIN (readers INNER JOIN take_applies ON readers.reader_id = take_applies.reader) ON books.book_id = take_applies.book) ON authors.author_id = books.author) ON genres.genre_id = books.genre;";
+            $"FROM readers INNER JOIN (books INNER JOIN take_applies ON books.book_id = take_applies.book) ON readers.reader_id = take_applies.reader; ";
         public static string GetAllAppliesByAuthor(string author) =>
-            $"{GetAllApplies().Trim()[..^1]} WHERE (((authors.fio)=\"{author}\"));";
+            $"SELECT books.title, readers.reader_name, take_applies.apply_date " +
+            $"FROM authors INNER JOIN (readers INNER JOIN (books INNER JOIN take_applies ON books.book_id = take_applies.book) ON readers.reader_id = take_applies.reader) ON authors.author_id = books.author " +
+            $"WHERE (((authors.fio)=\"{author}\"));";
 
         public static string GetAllAppliesByGenre(string genre) =>
-            $"{GetAllApplies().Trim()[..^1]} WHERE (((genres.genre_name)=\"{genre}\"));";
+            $"SELECT books.title, readers.reader_name, take_applies.apply_date " +
+            $"FROM genres INNER JOIN (readers INNER JOIN (books INNER JOIN take_applies ON books.book_id = take_applies.book) ON readers.reader_id = take_applies.reader) ON genres.genre_id = books.genre " +
+            $"WHERE (((genres.genre_name)=\"{genre}\"));";
 
         public static string GetAlAppliesByReader(string reader) =>
             $"{GetAllApplies().Trim()[..^1]} WHERE (((readers.reader_name)=\"{reader}\"));";
@@ -144,10 +152,22 @@ namespace home_library
             $"SELECT books.title, readers.reader_name, taken_books.taken_date, taken_books.return_date, DateDiff(\"d\",taken_books.return_date,Date()) AS dept " +
             $"FROM readers INNER JOIN (books INNER JOIN taken_books ON books.book_id = taken_books.book) ON readers.reader_id = taken_books.reader " +
             $"WHERE (((taken_books.return_date)<Date())); ";
+        public static string GetDeptedBooksByUser(string username) => 
+            $"{GetDeptedBooks().Trim()[..^1]} AND (((readers.reader_name)=\"{username}\"));";
+        public static string GetDeptedBooksByAuthor(string author) => 
+            $"SELECT books.title, readers.reader_name, taken_books.taken_date, taken_books.return_date, DateDiff(\"d\",taken_books.return_date,Date()) AS dept " +
+            $"FROM authors INNER JOIN (readers INNER JOIN (books INNER JOIN taken_books ON books.book_id = taken_books.book) ON readers.reader_id = taken_books.reader) ON authors.author_id = books.author " +
+            $"WHERE (((taken_books.return_date)<Date())) " +
+            $"AND (((authors.fio)=\"{author}\"));";
+        public static string GetDeptedBooksByGenre(string genre) =>
+            $"SELECT books.title, readers.reader_name, taken_books.taken_date, taken_books.return_date, DateDiff(\"d\",taken_books.return_date,Date()) AS dept " +
+            $"FROM genres INNER JOIN (readers INNER JOIN (books INNER JOIN taken_books ON books.book_id = taken_books.book) ON readers.reader_id = taken_books.reader) ON genres.genre_id = books.genre " +
+            $"WHERE (((taken_books.return_date)<Date())) " +
+            $"AND (((genres.genre_name)=\"{genre}\"));";
         public static string GetUserDeptedBooks(string username) =>
             $"SELECT books.title, taken_books.taken_date, taken_books.return_date, DateDiff(\"d\",taken_books.return_date,Date()) AS dept " +
             $"FROM readers INNER JOIN (books INNER JOIN taken_books ON books.book_id = taken_books.book) ON readers.reader_id = taken_books.reader " +
-            $"WHERE (((taken_books.return_date)<Date())) AND  readers.reader_name=\"{username}\"; ";
+            $"WHERE (((taken_books.return_date)<Date())) AND readers.reader_name=\"{username}\"; ";
 
         // для юзера
         public static string AddUserTakeApply(string username, string title) => 
@@ -161,22 +181,29 @@ namespace home_library
             $"WHERE (((readers.reader_name)=\"{username}\") AND ((books.title)=\"{title}\")); ";
 
         // для админа
-        public static string AddUserTakeLibraryMarker(string title) => 
+        public static string AddLibriryMarker(string title) => 
             $"UPDATE books INNER JOIN library ON books.book_id = library.book SET library.taken = True " +
             $"WHERE (((books.title)=\"{title}\")); ";
-        public static string RemoveUserTakeLibraryMarker(string title) =>
+        public static string RemoveLibraryMarker(string title) =>
             $"UPDATE books INNER JOIN library ON books.book_id = library.book SET library.taken = False " +
             $"WHERE (((books.title)=\"{title}\")); ";
 
-        public static string AddUserTakenBook(string title, string username) => 
+        public static string AddToTakenBooks(string title, string username) => 
             $"INSERT INTO taken_books (book, reader, taken_date, return_date) " +
             $"SELECT books.book_id, readers.reader_id, DATE(), DateAdd('d', 14, DATE())  " +
             $" FROM books, readers WHERE books.title =\"{title}\" AND readers.reader_name = \"{username}\";";
-        public static string RemoveUserTakenBook(string title, string username) => 
+        public static string RemoveFromTakenBooks(string title, string username) => 
             $"DELETE books.title, readers.reader_name, taken_books.*, * " +
             $"FROM readers INNER JOIN (books INNER JOIN taken_books ON books.book_id = taken_books.book) ON readers.reader_id = taken_books.reader " +
             $"WHERE (((books.title)=\"{title}\") AND ((readers.reader_name)=\"{username}\")); ";
 
+        // добавить запись в историю
+        public static string AddToHistory(string title, string username) =>
+            $"INSERT INTO history ( reader, book, return_date ) " +
+            $"SELECT readers.reader_id, books.book_id, Date() AS Выражение1 " +
+            $"FROM books, readers " +
+            $"WHERE (((books.title)=\"{title}\") AND ((readers.reader_name)=\"{username}\"));";
+        
         // злосчастный жанр
         public static string AddGenreTable() => 
             $"CREATE TABLE genres ( genre_id counter(1, 1) NOT NULL Primary key, genre_name CHAR(25) NOT NULL ) ";

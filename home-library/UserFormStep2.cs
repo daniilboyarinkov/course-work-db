@@ -14,9 +14,9 @@ namespace home_library
             DataGridUser.Columns.Add("title", "Название");
             DataGridUser.Columns.Add("author", "Автор");
             DataGridUser.Columns.Add("publication_year", "Год публикации");
-            DataGridUser.Columns.Add("take_date", "Взята");
             if (step == "user_books")
             {
+                DataGridUser.Columns.Add("take_date", "Взята");
                 DataGridUser.Columns.Add("return_date", "Вернуть до");
                 Title.Text = "Книги на руках";
                 ActionBtn.Text = "Вернуть";
@@ -74,6 +74,12 @@ namespace home_library
 
         private void ReturnBook()
         {
+            if (DataGridUser.SelectedRows.Count == 0)
+            {
+                MessageBox.Show("Выберите книгу...", "Error!");
+                return;
+            }
+
             var row = DataGridUser.SelectedRows[0];
 
             string title = row.Cells[0].Value?.ToString() ?? "";
@@ -92,13 +98,15 @@ namespace home_library
 
             try
             {
-                string query = Queries.RemoveUserTakeLibraryMarker(title);
-                OleDbCommand command = new(query, Logic.Connection);
-                command.ExecuteNonQuery();
+                string query = Queries.AddToHistory(title, UserLogic.Username);
+                Logic.ExecuteNonQuery(query);
 
-                query = Queries.RemoveUserTakenBook(title, UserLogic.Username);
-                command = new(query, Logic.Connection);
-                command.ExecuteNonQuery();
+                query = Queries.RemoveLibraryMarker(title);
+                Logic.ExecuteNonQuery(query);
+
+                query = Queries.RemoveFromTakenBooks(title, UserLogic.Username);
+                Logic.ExecuteNonQuery(query);
+                
 
                 MessageBox.Show("Книга возвращена! Спасибо!", "Успех!");
                 UpdateBooks();

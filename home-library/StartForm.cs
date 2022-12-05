@@ -44,10 +44,10 @@ namespace home_library
                 } 
                 else
                 {
-                    MessageBox.Show($"Нет пользователя с именем {inputName}!");
+                    MessageBox.Show($"Нет пользователя с именем {inputName}!", "Error!");
                 }
             }
-            if (!valid) MessageBox.Show($"Нет пользователя с именем {inputName}!");
+            if (!valid) MessageBox.Show($"Нет пользователя с именем {inputName}!", "Error!");
 
             reader.Close();
         }

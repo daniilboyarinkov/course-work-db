@@ -38,6 +38,7 @@
             this.Change = new System.Windows.Forms.Button();
             this.historyBtn = new System.Windows.Forms.Button();
             this.TakeAppliesBtn = new System.Windows.Forms.Button();
+            this.DeptBtn = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -52,7 +53,7 @@
             this.groupBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.groupBox1.Size = new System.Drawing.Size(217, 175);
+            this.groupBox1.Size = new System.Drawing.Size(300, 175);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             // 
@@ -60,7 +61,7 @@
             // 
             this.radioButton1.AutoSize = true;
             this.radioButton1.Font = new System.Drawing.Font("Segoe UI", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.radioButton1.Location = new System.Drawing.Point(6, 142);
+            this.radioButton1.Location = new System.Drawing.Point(6, 140);
             this.radioButton1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.radioButton1.Name = "radioButton1";
             this.radioButton1.Size = new System.Drawing.Size(163, 29);
@@ -73,7 +74,7 @@
             // 
             this.radioButton4.AutoSize = true;
             this.radioButton4.Font = new System.Drawing.Font("Segoe UI", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.radioButton4.Location = new System.Drawing.Point(6, 109);
+            this.radioButton4.Location = new System.Drawing.Point(6, 107);
             this.radioButton4.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.radioButton4.Name = "radioButton4";
             this.radioButton4.Size = new System.Drawing.Size(81, 29);
@@ -86,7 +87,7 @@
             // 
             this.radioButton3.AutoSize = true;
             this.radioButton3.Font = new System.Drawing.Font("Segoe UI", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.radioButton3.Location = new System.Drawing.Point(6, 79);
+            this.radioButton3.Location = new System.Drawing.Point(6, 77);
             this.radioButton3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.radioButton3.Name = "radioButton3";
             this.radioButton3.Size = new System.Drawing.Size(144, 29);
@@ -99,7 +100,7 @@
             // 
             this.radioButton2.AutoSize = true;
             this.radioButton2.Font = new System.Drawing.Font("Segoe UI", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.radioButton2.Location = new System.Drawing.Point(6, 50);
+            this.radioButton2.Location = new System.Drawing.Point(6, 48);
             this.radioButton2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.radioButton2.Name = "radioButton2";
             this.radioButton2.Size = new System.Drawing.Size(76, 29);
@@ -107,13 +108,13 @@
             this.radioButton2.TabStop = true;
             this.radioButton2.Text = "Книга";
             this.radioButton2.UseVisualStyleBackColor = true;
-            this.radioButton2.CheckedChanged += new System.EventHandler(this.radioButton2_CheckedChanged);
+            this.radioButton2.CheckedChanged += new System.EventHandler(this.RadioButton2_CheckedChanged);
             // 
             // Add
             // 
             this.Add.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.Add.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.Add.Location = new System.Drawing.Point(247, 29);
+            this.Add.Location = new System.Drawing.Point(24, 198);
             this.Add.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Add.Name = "Add";
             this.Add.Size = new System.Drawing.Size(96, 34);
@@ -126,7 +127,7 @@
             // 
             this.Delete.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.Delete.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.Delete.Location = new System.Drawing.Point(247, 67);
+            this.Delete.Location = new System.Drawing.Point(126, 198);
             this.Delete.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Delete.Name = "Delete";
             this.Delete.Size = new System.Drawing.Size(96, 34);
@@ -139,7 +140,7 @@
             // 
             this.Change.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.Change.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.Change.Location = new System.Drawing.Point(247, 105);
+            this.Change.Location = new System.Drawing.Point(228, 198);
             this.Change.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Change.Name = "Change";
             this.Change.Size = new System.Drawing.Size(96, 34);
@@ -152,20 +153,20 @@
             // 
             this.historyBtn.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.historyBtn.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.historyBtn.Location = new System.Drawing.Point(24, 237);
+            this.historyBtn.Location = new System.Drawing.Point(382, 105);
             this.historyBtn.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.historyBtn.Name = "historyBtn";
             this.historyBtn.Size = new System.Drawing.Size(217, 34);
             this.historyBtn.TabIndex = 4;
             this.historyBtn.Text = "История";
             this.historyBtn.UseVisualStyleBackColor = true;
-            this.historyBtn.Click += new System.EventHandler(this.historyBtn_Click_1);
+            this.historyBtn.Click += new System.EventHandler(this.HistoryBtn_Click_1);
             // 
             // TakeAppliesBtn
             // 
             this.TakeAppliesBtn.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.TakeAppliesBtn.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.TakeAppliesBtn.Location = new System.Drawing.Point(423, 237);
+            this.TakeAppliesBtn.Location = new System.Drawing.Point(382, 67);
             this.TakeAppliesBtn.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.TakeAppliesBtn.Name = "TakeAppliesBtn";
             this.TakeAppliesBtn.Size = new System.Drawing.Size(217, 34);
@@ -174,11 +175,25 @@
             this.TakeAppliesBtn.UseVisualStyleBackColor = true;
             this.TakeAppliesBtn.Click += new System.EventHandler(this.TakeAppliesBtn_Click);
             // 
+            // DeptBtn
+            // 
+            this.DeptBtn.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.DeptBtn.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.DeptBtn.Location = new System.Drawing.Point(382, 29);
+            this.DeptBtn.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.DeptBtn.Name = "DeptBtn";
+            this.DeptBtn.Size = new System.Drawing.Size(217, 34);
+            this.DeptBtn.TabIndex = 6;
+            this.DeptBtn.Text = "Просрочка";
+            this.DeptBtn.UseVisualStyleBackColor = true;
+            this.DeptBtn.Click += new System.EventHandler(this.DeptBtn_Click);
+            // 
             // AdminForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(652, 282);
+            this.ClientSize = new System.Drawing.Size(631, 257);
+            this.Controls.Add(this.DeptBtn);
             this.Controls.Add(this.TakeAppliesBtn);
             this.Controls.Add(this.historyBtn);
             this.Controls.Add(this.Change);
@@ -206,5 +221,6 @@
         private RadioButton radioButton1;
         private Button historyBtn;
         private Button TakeAppliesBtn;
+        private Button DeptBtn;
     }
 }

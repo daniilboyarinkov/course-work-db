@@ -8,9 +8,7 @@ namespace home_library
             InitializeComponent();
 
             if (Logic.IsGenre)
-            {
                 groupBox1.Controls.Add(new RadioButton() { Name = "genre_radioBtn", Text = "Жанр" });
-            }
         }
 
         private string GetRadioBtnText()
@@ -46,20 +44,8 @@ namespace home_library
             adminFormStep2.ShowDialog();
         }
 
-        private void radioButton2_CheckedChanged(object sender, EventArgs e)
-        {
-            string state = GetRadioBtnText();
-            if (state == "книга")
-            {
-                //this.UserGet.Visible = true;
-                //this.UserGetBack.Visible = true;
-            }
-            else
-            {
-                //this.UserGet.Visible = false;
-                //this.UserGetBack.Visible = false;
-            }
-        }
+        private void RadioButton2_CheckedChanged(object sender, EventArgs e)
+        { }
 
         private void TakeAppliesBtn_Click(object sender, EventArgs e)
         {
@@ -67,9 +53,15 @@ namespace home_library
             adminHistory.ShowDialog();
         }
 
-        private void historyBtn_Click_1(object sender, EventArgs e)
+        private void HistoryBtn_Click_1(object sender, EventArgs e)
         {
             AdminHistory adminHistory = new("history");
+            adminHistory.ShowDialog();
+        }
+
+        private void DeptBtn_Click(object sender, EventArgs e)
+        {
+            AdminHistory adminHistory = new("dept");
             adminHistory.ShowDialog();
         }
     }

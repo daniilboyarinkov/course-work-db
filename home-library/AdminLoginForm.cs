@@ -46,5 +46,21 @@ namespace home_library
             List<List<string>> data = Logic.ExecuteQuery(query);
             return data[0][0];
         }
+
+        private void RestorePassword_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            string message = 
+                "Добрый день. \n\nУ одного из администраторов системы был утерян доступ к приложению. \n" +
+                "Восстановите безопасность приложения как можно раньше. \n\n<b>Спасибо!</b>";
+            try
+            {
+                Logic.SendMail(message, "Восстановление доступа пользователей");
+                MessageBox.Show("Ваша ситуация отправлена на почту главного администратора. \n\nОбратитесь к нему для восстановления доступа.", "Ну с кем не бывает...");
+            }
+            catch
+            {
+                MessageBox.Show("Что-то пошло не так. попробуйте снова позже...", "Ошибка!");
+            }
+        }
     }
 }
