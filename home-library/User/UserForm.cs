@@ -46,7 +46,7 @@ namespace home_library
             List<List<string>> rows = Logic.ExecuteQuery(query);
             if (rows.Count == 0 || rows[0].Count == 0) return;
 
-            MessageBox.Show("С днем рождения!");
+            MessageBox.Show($"Сегодня {DateTime.Now:dd/MM/yyyy}. \n\n С днём рождения, {User.User.Username}!", "С днем рождения!");
         }
         // авторы у которых сегодня день рождения
         private void CheckAuthorAnniversary()
@@ -55,7 +55,7 @@ namespace home_library
             List<List<string>> rows = Logic.ExecuteQuery(query);
             if (rows.Count == 0 || rows[0].Count == 0) return;
 
-            foreach (var row in rows) MessageBox.Show(row[0]);
+            foreach (var row in rows) MessageBox.Show($"Сегодня день рождения у {row[0]}. ", $"День рождения {row[0]}!!!");
         }
         // проверка просрочки
         private void CheckDeptBooks()
@@ -64,7 +64,7 @@ namespace home_library
             List<List<string>> rows = Logic.ExecuteQuery(query);
             if (rows.Count == 0 || rows[0].Count == 0) return;
 
-            foreach (var row in rows) MessageBox.Show(row[0]);
+            foreach (var row in rows) MessageBox.Show($"Пожалуйста, верните книгу {row[0]} как можно раньше.\nСрок возврата книги истек...", "Просроченные книги!");
         }
         private void AddRadioButtonsFilters(string[] authors)
         {
