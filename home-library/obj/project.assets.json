@@ -442,11 +442,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\sudlenia\\Desktop\\work\\course-work\\course-work-db\\home-library\\home-library.csproj",
+      "projectUniqueName": "C:\\Users\\sudlenia\\Desktop\\course-work\\course-work-db\\home-library\\home-library.csproj",
       "projectName": "home-library",
-      "projectPath": "C:\\Users\\sudlenia\\Desktop\\work\\course-work\\course-work-db\\home-library\\home-library.csproj",
+      "projectPath": "C:\\Users\\sudlenia\\Desktop\\course-work\\course-work-db\\home-library\\home-library.csproj",
       "packagesPath": "C:\\Users\\sudlenia\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\sudlenia\\Desktop\\work\\course-work\\course-work-db\\home-library\\obj\\",
+      "outputPath": "C:\\Users\\sudlenia\\Desktop\\course-work\\course-work-db\\home-library\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\sudlenia\\AppData\\Roaming\\NuGet\\NuGet.Config",
