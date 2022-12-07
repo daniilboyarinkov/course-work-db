@@ -49,6 +49,7 @@
             this.label3 = new System.Windows.Forms.Label();
             this.DeleteTableBtn = new System.Windows.Forms.Button();
             this.AllTablesCombobx = new System.Windows.Forms.ComboBox();
+            this.radioButton5 = new System.Windows.Forms.RadioButton();
             this.groupBox1.SuspendLayout();
             this.AddTableGroupBox.SuspendLayout();
             this.DeleteTableGroupbox.SuspendLayout();
@@ -56,6 +57,7 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.radioButton5);
             this.groupBox1.Controls.Add(this.radioButton1);
             this.groupBox1.Controls.Add(this.radioButton4);
             this.groupBox1.Controls.Add(this.radioButton3);
@@ -305,6 +307,19 @@
             this.AllTablesCombobx.Size = new System.Drawing.Size(177, 29);
             this.AllTablesCombobx.TabIndex = 11;
             // 
+            // radioButton5
+            // 
+            this.radioButton5.AutoSize = true;
+            this.radioButton5.Font = new System.Drawing.Font("Segoe UI", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.radioButton5.Location = new System.Drawing.Point(6, 15);
+            this.radioButton5.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.radioButton5.Name = "radioButton5";
+            this.radioButton5.Size = new System.Drawing.Size(76, 29);
+            this.radioButton5.TabIndex = 5;
+            this.radioButton5.TabStop = true;
+            this.radioButton5.Text = "Жанр";
+            this.radioButton5.UseVisualStyleBackColor = true;
+            // 
             // AdminForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -355,5 +370,6 @@
         private Label label3;
         private Button DeleteTableBtn;
         private ComboBox AllTablesCombobx;
+        private RadioButton radioButton5;
     }
 }

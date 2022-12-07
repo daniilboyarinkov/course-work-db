@@ -1,8 +1,5 @@
 ﻿
-using System.Data.OleDb;
-using System.Linq;
 using home_library.Static;
-using home_library.User;
 
 namespace home_library
 {
@@ -20,8 +17,6 @@ namespace home_library
             authors = Logic.GetAllAuthors();
             AddRadioButtonsFilters(authors);
 
-            DataGridUser.Columns.Add("column4", "Жанр");
-
             genres = Logic.GetAllGenres();
             filterByGenre.Items.AddRange((new string[] { "Все жанры" }).Concat(genres.ToArray()).ToArray());
             filterByGenre.SelectedValueChanged += (o, args) =>
@@ -32,7 +27,7 @@ namespace home_library
             CheckDate();
         }
 
-        private void CheckDate()
+        private static void CheckDate()
         {
             CheckUserBirthDay();
             CheckAuthorAnniversary();
@@ -40,7 +35,7 @@ namespace home_library
         }
 
         // проверка если у пользоваителя сегодня др
-        private void CheckUserBirthDay()
+        private static void CheckUserBirthDay()
         {
             string query = Queries.CheckUsersBirthDay(User.User.Username);
             List<List<string>> rows = Logic.ExecuteQuery(query);
@@ -49,7 +44,7 @@ namespace home_library
             MessageBox.Show($"Сегодня {DateTime.Now:dd/MM/yyyy}. \n\n С днём рождения, {User.User.Username}!", "С днем рождения!");
         }
         // авторы у которых сегодня день рождения
-        private void CheckAuthorAnniversary()
+        private static void CheckAuthorAnniversary()
         {
             string query = Queries.GetBirthdayAuthors();
             List<List<string>> rows = Logic.ExecuteQuery(query);
@@ -58,7 +53,7 @@ namespace home_library
             foreach (var row in rows) MessageBox.Show($"Сегодня день рождения у {row[0]}. ", $"День рождения {row[0]}!!!");
         }
         // проверка просрочки
-        private void CheckDeptBooks()
+        private static void CheckDeptBooks()
         {
             string query = Queries.GetUserDeptedBooks(User.User.Username);
             List<List<string>> rows = Logic.ExecuteQuery(query);

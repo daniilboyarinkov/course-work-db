@@ -11,7 +11,6 @@ namespace home_library
         {
             InitializeComponent();
 
-            groupBox1.Controls.Add(new RadioButton() { Name = "genre_radioBtn", Text = "Жанр" });
             NumOfColumnsCombobox.Items.AddRange(new string[] { "1", "2", "3", "4", "5" });
 
             UpdateTableName();

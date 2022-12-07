@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "rAWxEeFwP1SzlQicB4u1bnfM+Gi2g4UUfs6F4c/cJ+gCjccXSxswpb1CX1JJN5nh9C2ZeTL6eYmbdKvixLwOtw==",
+  "dgSpecHash": "+ONBFxh0aCC544gGYFXGx3ZSdNk626RCCoczLbyD5cmu7H3PAJIVc37ThwbXisRJQr/Go4+az5qeI8NTp/TS1A==",
   "success": true,
-  "projectFilePath": "C:\\Users\\sudlenia\\Desktop\\course-work\\course-work-db\\home-library\\home-library.csproj",
+  "projectFilePath": "C:\\Users\\sudlenia\\Desktop\\course-work-db\\home-library\\home-library.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\sudlenia\\.nuget\\packages\\microsoft.win32.systemevents\\7.0.0\\microsoft.win32.systemevents.7.0.0.nupkg.sha512",
     "C:\\Users\\sudlenia\\.nuget\\packages\\system.configuration.configurationmanager\\7.0.0\\system.configuration.configurationmanager.7.0.0.nupkg.sha512",

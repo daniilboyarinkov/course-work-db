@@ -98,7 +98,7 @@
             this.addRelation.TabIndex = 8;
             this.addRelation.Text = "Добавить связь";
             this.addRelation.UseVisualStyleBackColor = true;
-            this.addRelation.Click += new System.EventHandler(this.button1_Click);
+            this.addRelation.Click += new System.EventHandler(this.Button1_Click);
             // 
             // AdminAddTableForm
             // 

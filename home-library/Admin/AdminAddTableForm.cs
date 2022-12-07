@@ -7,7 +7,7 @@ namespace home_library.Admin
     {
         private readonly string TableName;
         private readonly int NumOfColumns;
-        private readonly string[] tables;
+        private string[] tables;
         public AdminAddTableForm(string table_name, int num_of_columns)
         {
             InitializeComponent();
@@ -70,14 +70,14 @@ namespace home_library.Admin
             CreateTable();
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void Button1_Click(object sender, EventArgs e)
         {
             string table_name = SelectTable.Text;
 
             if (!tables.Contains(TableName))
             {
                 CreateTable();
-                tables.Append(TableName);
+                tables = tables.Append(TableName).ToArray();
             }
 
             if (string.IsNullOrEmpty(table_name))
@@ -134,7 +134,7 @@ namespace home_library.Admin
             {
                 Logic.ExecuteNonQuery(query);
                 MessageBox.Show("Таблица успешно создана!", "Успех!");
-                tables.Append(TableName);
+                tables = tables.Append(TableName).ToArray();
             }
             catch
             {

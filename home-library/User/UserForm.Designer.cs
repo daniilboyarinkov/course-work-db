@@ -33,6 +33,7 @@
             this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.genre = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.GetBook = new System.Windows.Forms.Button();
             this.ShowHistory = new System.Windows.Forms.Button();
             this.AllAuthorsRadioBtn = new System.Windows.Forms.RadioButton();
@@ -62,7 +63,8 @@
             this.DataGridUser.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Column2,
             this.Column3,
-            this.Column4});
+            this.Column4,
+            this.genre});
             this.DataGridUser.Location = new System.Drawing.Point(10, 9);
             this.DataGridUser.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.DataGridUser.MultiSelect = false;
@@ -95,6 +97,11 @@
             this.Column4.Name = "Column4";
             this.Column4.Width = 125;
             // 
+            // genre
+            // 
+            this.genre.HeaderText = "Жанр";
+            this.genre.Name = "genre";
+            // 
             // GetBook
             // 
             this.GetBook.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
@@ -125,7 +132,7 @@
             // 
             this.AllAuthorsRadioBtn.AutoSize = true;
             this.AllAuthorsRadioBtn.Checked = true;
-            this.AllAuthorsRadioBtn.Location = new System.Drawing.Point(3, 3);
+            this.AllAuthorsRadioBtn.Location = new System.Drawing.Point(3, 17);
             this.AllAuthorsRadioBtn.Name = "AllAuthorsRadioBtn";
             this.AllAuthorsRadioBtn.Size = new System.Drawing.Size(87, 19);
             this.AllAuthorsRadioBtn.TabIndex = 0;
@@ -184,5 +191,6 @@
         private RadioButton AllAuthorsRadioBtn;
         private ComboBox filterByGenre;
         private Panel AuthorFilterBox;
+        private DataGridViewTextBoxColumn genre;
     }
 }
