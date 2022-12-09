@@ -10,7 +10,7 @@ namespace home_library.Static
             $"WHERE (((library.taken)=False));";
         // те что у пользователя на руках
         public static string GetUserBooks(string username) =>
-            $"SELECT books.title, books.author, books.publication_year, taken_books.taken_date, taken_books.return_date " +
+            $"SELECT books.title, authors.fio, books.publication_year, taken_books.taken_date, taken_books.return_date " +
             $"FROM readers INNER JOIN ((authors INNER JOIN books ON authors.author_id = books.author) " +
             $"INNER JOIN taken_books ON books.book_id = taken_books.book) ON readers.reader_id = taken_books.reader " +
             $"WHERE (((readers.reader_name)=\"{username}\"));";
