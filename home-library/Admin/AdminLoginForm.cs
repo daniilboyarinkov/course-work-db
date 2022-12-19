@@ -1,39 +1,15 @@
 ﻿
 using home_library.Admin;
 using home_library.Static;
+using MaterialSkin.Controls;
 
 namespace home_library
 {
-    public partial class AdminLoginForm : Form
+    public partial class AdminLoginForm : MaterialForm
     {
         public AdminLoginForm()
         {
             InitializeComponent();
-        }
-
-        private void EnterBtn_Click(object sender, EventArgs e)
-        {
-            string login = Login.Text.Trim();
-            string password = Password.Text.Trim();
-
-            if (!IsLoginValid(login))
-            {
-                MessageBox.Show("Неверный логин или пароль!", "Ошибка!");
-                return;
-            }
-
-            Admin.Admin.Login = login;
-            string dbHash = GetDBHash(login);
-
-            if (!Admin.Admin.VerifyHashedPassword(dbHash, password))
-            {
-                MessageBox.Show("Неверный логин или пароль!", "Ошибка!");
-                return;
-            }
-
-            AdminForm adminForm = new();
-            Visible = false;
-            adminForm.ShowDialog();
         }
 
         private bool IsLoginValid(string login)
@@ -64,6 +40,31 @@ namespace home_library
             {
                 MessageBox.Show("Что-то пошло не так. попробуйте снова позже...", "Ошибка!");
             }
+        }
+
+        private void EnterBtn_Click_1(object sender, EventArgs e)
+        {
+            string login = Login.Text.Trim();
+            string password = Password.Text.Trim();
+
+            if (!IsLoginValid(login))
+            {
+                MessageBox.Show("Неверный логин или пароль!", "Ошибка!");
+                return;
+            }
+
+            Admin.Admin.Login = login;
+            string dbHash = GetDBHash(login);
+
+            if (!Admin.Admin.VerifyHashedPassword(dbHash, password))
+            {
+                MessageBox.Show("Неверный логин или пароль!", "Ошибка!");
+                return;
+            }
+
+            AdminForm adminForm = new();
+            Visible = false;
+            adminForm.ShowDialog();
         }
     }
 }

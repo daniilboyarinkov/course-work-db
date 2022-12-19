@@ -1,9 +1,10 @@
 ﻿using home_library.Static;
 using home_library.User;
+using MaterialSkin.Controls;
 
 namespace home_library
 {
-    public partial class UserFormStep2 : Form
+    public partial class UserFormStep2 : MaterialForm
     {
         private readonly string step = string.Empty;
         public UserFormStep2(string step)
@@ -19,13 +20,16 @@ namespace home_library
             if (step == "user_books")
             {
                 DataGridUser.Columns.Add("return_date", "Вернуть до");
-                Title.Text = "Книги на руках";
+                //Title.Text = "Книги на руках";
+                Text = $"Книги на руках пользователя {User.User.Username}";
                 ActionBtn.Text = "Вернуть";
             }
             else if (step == "user_history")
             {
                 DataGridUser.Columns.Add("return_date", "Возвращена");
-                Title.Text = "Моя история";
+                //Title.Text = "Моя история";
+                Text = $"История пользователя {User.User.Username}";
+
                 ActionBtn.Text = "Информация";
             }
             if (Logic.IsGenre) DataGridUser.Columns.Add("genre", "Жанр");

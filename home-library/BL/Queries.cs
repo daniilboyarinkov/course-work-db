@@ -217,10 +217,10 @@ namespace home_library.Static
             $"CREATE TABLE {table_name} ( {string.Join(", ", columns.Select(d => string.Join(" ", new string[] { d.Name, d.Value })).ToArray())} );";
         public static string DropTable(string table_name) =>
             $"DROP TABLE {table_name};";
-        public static string AddRelatedField(string target_table, string table_name) =>
-            $"ALTER TABLE {target_table} ADD {table_name} INT;";
-        public static string AddRelation(string target_table, string table_name) =>
-            $"ALTER TABLE {target_table} ADD CONSTRAINT {table_name} FOREIGN KEY ({table_name}) REFERENCES {table_name} (ID) ;";
+        public static string AddRelatedField(string target_table, string table_name, string key_name, string key_type) =>
+            $"ALTER TABLE {target_table} ADD {table_name} {key_type};";
+        public static string AddRelation(string target_table, string table_name, string key_name, string key_type) =>
+            $"ALTER TABLE {target_table} ADD CONSTRAINT {table_name} FOREIGN KEY ({table_name}) REFERENCES {table_name} ({key_name}) ;";
         public static string RemoveRelation(string target_table, string table_name) =>
             $"alter table {target_table} drop constraint {table_name};";
         public static string RemoveRelatedField(string target_table, string table_name) =>

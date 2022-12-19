@@ -1,9 +1,10 @@
 ﻿
 using home_library.Static;
+using MaterialSkin.Controls;
 
 namespace home_library
 {
-    public partial class UserForm : Form
+    public partial class UserForm : MaterialForm
     {
         private readonly string[] authors;
         private readonly string[] genres;
@@ -124,8 +125,7 @@ namespace home_library
             UpdateBooks();
         }
 
-
-        private void GetBook_Click(object sender, EventArgs e)
+        private void GetBook_Click_1(object sender, EventArgs e)
         {
             var row = DataGridUser.SelectedRows[0];
 
@@ -155,6 +155,11 @@ namespace home_library
             {
                 MessageBox.Show("Что-то пошло не так. Попробуйте снова позже.", "Error!");
             }
+        }
+
+        private void filterByGenre_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
