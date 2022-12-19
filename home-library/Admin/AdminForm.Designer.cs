@@ -34,7 +34,6 @@
             this.materialRadioButton3 = new MaterialSkin.Controls.MaterialRadioButton();
             this.materialRadioButton2 = new MaterialSkin.Controls.MaterialRadioButton();
             this.materialRadioButton1 = new MaterialSkin.Controls.MaterialRadioButton();
-            this.radioButton1 = new System.Windows.Forms.RadioButton();
             this.Add = new System.Windows.Forms.Button();
             this.Delete = new System.Windows.Forms.Button();
             this.Change = new System.Windows.Forms.Button();
@@ -152,19 +151,6 @@
             this.materialRadioButton1.Text = "Жанр";
             this.materialRadioButton1.UseVisualStyleBackColor = true;
             // 
-            // radioButton1
-            // 
-            this.radioButton1.AutoSize = true;
-            this.radioButton1.Font = new System.Drawing.Font("Segoe UI", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.radioButton1.Location = new System.Drawing.Point(25, 138);
-            this.radioButton1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.radioButton1.Name = "radioButton1";
-            this.radioButton1.Size = new System.Drawing.Size(163, 29);
-            this.radioButton1.TabIndex = 4;
-            this.radioButton1.TabStop = true;
-            this.radioButton1.Text = "Админ коллегия";
-            this.radioButton1.UseVisualStyleBackColor = true;
-            // 
             // Add
             // 
             this.Add.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
@@ -207,7 +193,6 @@
             // AddTableGroupBox
             // 
             this.AddTableGroupBox.Controls.Add(this.NumOfColumnsCombobox);
-            this.AddTableGroupBox.Controls.Add(this.radioButton1);
             this.AddTableGroupBox.Controls.Add(this.label2);
             this.AddTableGroupBox.Controls.Add(this.AddTableButton);
             this.AddTableGroupBox.Controls.Add(this.TableNameTextbox);
@@ -404,7 +389,6 @@
         private Button Add;
         private Button Delete;
         private Button Change;
-        private RadioButton radioButton1;
         private GroupBox AddTableGroupBox;
         private Label label2;
         private Button AddTableButton;

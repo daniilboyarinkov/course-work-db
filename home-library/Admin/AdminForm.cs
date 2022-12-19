@@ -93,7 +93,32 @@ namespace home_library
 
             DialogResult dialogResult = MessageBox.Show($"Вы уверены, что хотите удалить таблицу {table_name}?", "Подтверждение удаления", MessageBoxButtons.YesNo);
             if (dialogResult != DialogResult.Yes) return;
-            ClearAllRelations(table_name);
+
+            if (tables is null) return;
+            foreach (string table in tables)
+            {
+                if (table == table_name) continue;
+                try
+                {
+                    string query2 = Queries.RemoveRelation(table, table_name);
+                    Logic.ExecuteNonQuery(query2);
+                    MessageBox.Show("Успешна удалена связь");
+                }
+                catch
+                {
+                }
+                try
+                {
+                    string query1 = Queries.RemoveRelatedField(table, table_name);
+                    Logic.ExecuteNonQuery(query1);
+                    MessageBox.Show("Успешна удалено поле");
+
+                }
+                catch
+                {
+                }
+            }
+
 
             string query = Queries.DropTable(table_name);
             try
@@ -106,37 +131,12 @@ namespace home_library
             {
                 MessageBox.Show("Что-то пошло не так", "Error!");
             }
-            finally
-            {
-                AllTablesCombobx.Text = "";
-            }
+            AllTablesCombobx.Text = "";
         }
 
-        private void ClearAllRelations(string table_name)
-        {
-            if (tables is null) return;
-            foreach (string table in tables)
-            {
-                if (table == table_name) continue;
-                string query1 = Queries.RemoveRelatedField(table, table_name);
-                string query2 = Queries.RemoveRelation(table, table_name);
-
-                try
-                {
-                    Logic.ExecuteNonQuery(query2);
-                }
-                catch
-                {
-                }
-                try
-                {
-                    Logic.ExecuteNonQuery(query1);
-                }
-                catch
-                {
-                }
-            }
-        }
+        //private void ClearAllRelations(string table_name)
+        //{
+        //}
 
         private void historyBtn_Click(object sender, EventArgs e)
         {
