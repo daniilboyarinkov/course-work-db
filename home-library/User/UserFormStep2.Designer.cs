@@ -31,6 +31,7 @@
             this.ActionBtn = new System.Windows.Forms.Button();
             this.DataGridUser = new System.Windows.Forms.DataGridView();
             this.Title = new System.Windows.Forms.Label();
+            this.materialButton1 = new MaterialSkin.Controls.MaterialButton();
             ((System.ComponentModel.ISupportInitialize)(this.DataGridUser)).BeginInit();
             this.SuspendLayout();
             // 
@@ -69,11 +70,32 @@
             this.Title.Size = new System.Drawing.Size(0, 15);
             this.Title.TabIndex = 6;
             // 
+            // materialButton1
+            // 
+            this.materialButton1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.materialButton1.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            this.materialButton1.Depth = 0;
+            this.materialButton1.HighEmphasis = true;
+            this.materialButton1.Icon = null;
+            this.materialButton1.Location = new System.Drawing.Point(381, 335);
+            this.materialButton1.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.materialButton1.MouseState = MaterialSkin.MouseState.HOVER;
+            this.materialButton1.Name = "materialButton1";
+            this.materialButton1.NoAccentTextColor = System.Drawing.Color.Empty;
+            this.materialButton1.Size = new System.Drawing.Size(240, 36);
+            this.materialButton1.TabIndex = 7;
+            this.materialButton1.Text = "Сохранить таблицу в WORD";
+            this.materialButton1.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            this.materialButton1.UseAccentColor = false;
+            this.materialButton1.UseVisualStyleBackColor = true;
+            this.materialButton1.Click += new System.EventHandler(this.materialButton1_Click);
+            // 
             // UserFormStep2
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(674, 414);
+            this.Controls.Add(this.materialButton1);
             this.Controls.Add(this.Title);
             this.Controls.Add(this.ActionBtn);
             this.Controls.Add(this.DataGridUser);
@@ -90,5 +112,6 @@
         private Button ActionBtn;
         private DataGridView DataGridUser;
         private Label Title;
+        private MaterialSkin.Controls.MaterialButton materialButton1;
     }
 }
