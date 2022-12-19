@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "G7ZgYgMaeTvGjBN1FqgWdZI332tKi1jl9ZS/h55kh311FixyPokj7KalvkRwrpHNl40kUJVwmJEf7tD6ssJy6Q==",
+  "dgSpecHash": "uh3Mf68fmGrzgtoRrSjZlGiX5IkBCmmERBcbj9KRenPK3eoZK0ySaKkNxeKwrcOtAp51st13z86coNFiDpDeBw==",
   "success": true,
-  "projectFilePath": "C:\\Users\\sudlenia\\Desktop\\course-work\\course-work-db\\home-library\\home-library.csproj",
+  "projectFilePath": "C:\\Users\\sudlenia\\Desktop\\course-work-db\\home-library\\home-library.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\sudlenia\\.nuget\\packages\\materialskin\\0.2.1\\materialskin.0.2.1.nupkg.sha512",
     "C:\\Users\\sudlenia\\.nuget\\packages\\materialskin.2\\2.3.1\\materialskin.2.2.3.1.nupkg.sha512",
