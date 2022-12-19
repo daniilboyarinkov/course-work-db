@@ -28,67 +28,19 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.Login = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.Password = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.EnterBtn = new System.Windows.Forms.Button();
             this.RestorePassword = new System.Windows.Forms.LinkLabel();
-            this.label3 = new System.Windows.Forms.Label();
+            this.materialLabel1 = new MaterialSkin.Controls.MaterialLabel();
+            this.materialLabel2 = new MaterialSkin.Controls.MaterialLabel();
+            this.Login = new MaterialSkin.Controls.MaterialMaskedTextBox();
+            this.EnterBtn = new MaterialSkin.Controls.MaterialButton();
+            this.Password = new MaterialSkin.Controls.MaterialMaskedTextBox();
             this.SuspendLayout();
-            // 
-            // Login
-            // 
-            this.Login.Location = new System.Drawing.Point(206, 84);
-            this.Login.Margin = new System.Windows.Forms.Padding(4);
-            this.Login.Name = "Login";
-            this.Login.Size = new System.Drawing.Size(276, 27);
-            this.Login.TabIndex = 0;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(70, 91);
-            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(52, 20);
-            this.label1.TabIndex = 1;
-            this.label1.Text = "Логин";
-            // 
-            // Password
-            // 
-            this.Password.Location = new System.Drawing.Point(206, 137);
-            this.Password.Margin = new System.Windows.Forms.Padding(4);
-            this.Password.Name = "Password";
-            this.Password.Size = new System.Drawing.Size(276, 27);
-            this.Password.TabIndex = 2;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(70, 144);
-            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(62, 20);
-            this.label2.TabIndex = 3;
-            this.label2.Text = "Пароль";
-            // 
-            // EnterBtn
-            // 
-            this.EnterBtn.Location = new System.Drawing.Point(206, 192);
-            this.EnterBtn.Margin = new System.Windows.Forms.Padding(4);
-            this.EnterBtn.Name = "EnterBtn";
-            this.EnterBtn.Size = new System.Drawing.Size(276, 39);
-            this.EnterBtn.TabIndex = 4;
-            this.EnterBtn.Text = "Войти";
-            this.EnterBtn.UseVisualStyleBackColor = true;
-            this.EnterBtn.Click += new System.EventHandler(this.EnterBtn_Click);
             // 
             // RestorePassword
             // 
             this.RestorePassword.AutoSize = true;
             this.RestorePassword.LinkColor = System.Drawing.Color.BlueViolet;
-            this.RestorePassword.Location = new System.Drawing.Point(358, 250);
+            this.RestorePassword.Location = new System.Drawing.Point(320, 304);
             this.RestorePassword.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.RestorePassword.Name = "RestorePassword";
             this.RestorePassword.Size = new System.Drawing.Size(124, 20);
@@ -97,46 +49,159 @@
             this.RestorePassword.Text = "Забыли пароль?";
             this.RestorePassword.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.RestorePassword_LinkClicked);
             // 
-            // label3
+            // materialLabel1
             // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Segoe UI", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
-            this.label3.Location = new System.Drawing.Point(255, 28);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(184, 25);
-            this.label3.TabIndex = 6;
-            this.label3.Text = "Добро пожаловать!";
+            this.materialLabel1.AutoSize = true;
+            this.materialLabel1.Depth = 0;
+            this.materialLabel1.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.materialLabel1.Location = new System.Drawing.Point(81, 140);
+            this.materialLabel1.MouseState = MaterialSkin.MouseState.HOVER;
+            this.materialLabel1.Name = "materialLabel1";
+            this.materialLabel1.Size = new System.Drawing.Size(46, 19);
+            this.materialLabel1.TabIndex = 6;
+            this.materialLabel1.Text = "Логин";
+            // 
+            // materialLabel2
+            // 
+            this.materialLabel2.AutoSize = true;
+            this.materialLabel2.Depth = 0;
+            this.materialLabel2.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.materialLabel2.Location = new System.Drawing.Point(70, 213);
+            this.materialLabel2.MouseState = MaterialSkin.MouseState.HOVER;
+            this.materialLabel2.Name = "materialLabel2";
+            this.materialLabel2.Size = new System.Drawing.Size(57, 19);
+            this.materialLabel2.TabIndex = 7;
+            this.materialLabel2.Text = "Пароль";
+            // 
+            // Login
+            // 
+            this.Login.AllowPromptAsInput = true;
+            this.Login.AnimateReadOnly = false;
+            this.Login.AsciiOnly = false;
+            this.Login.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.Login.BeepOnError = false;
+            this.Login.CutCopyMaskFormat = System.Windows.Forms.MaskFormat.IncludeLiterals;
+            this.Login.Depth = 0;
+            this.Login.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.Login.HidePromptOnLeave = false;
+            this.Login.HideSelection = true;
+            this.Login.InsertKeyMode = System.Windows.Forms.InsertKeyMode.Default;
+            this.Login.LeadingIcon = null;
+            this.Login.Location = new System.Drawing.Point(206, 111);
+            this.Login.Mask = "";
+            this.Login.MaxLength = 32767;
+            this.Login.MouseState = MaterialSkin.MouseState.OUT;
+            this.Login.Name = "Login";
+            this.Login.PasswordChar = '\0';
+            this.Login.PrefixSuffixText = null;
+            this.Login.PromptChar = '_';
+            this.Login.ReadOnly = false;
+            this.Login.RejectInputOnFirstFailure = false;
+            this.Login.ResetOnPrompt = true;
+            this.Login.ResetOnSpace = true;
+            this.Login.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.Login.SelectedText = "";
+            this.Login.SelectionLength = 0;
+            this.Login.SelectionStart = 0;
+            this.Login.ShortcutsEnabled = true;
+            this.Login.Size = new System.Drawing.Size(250, 48);
+            this.Login.SkipLiterals = true;
+            this.Login.TabIndex = 8;
+            this.Login.TabStop = false;
+            this.Login.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.Login.TextMaskFormat = System.Windows.Forms.MaskFormat.IncludeLiterals;
+            this.Login.TrailingIcon = null;
+            this.Login.UseSystemPasswordChar = false;
+            this.Login.ValidatingType = null;
+            // 
+            // EnterBtn
+            // 
+            this.EnterBtn.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.EnterBtn.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            this.EnterBtn.Depth = 0;
+            this.EnterBtn.HighEmphasis = true;
+            this.EnterBtn.Icon = null;
+            this.EnterBtn.Location = new System.Drawing.Point(373, 241);
+            this.EnterBtn.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.EnterBtn.MouseState = MaterialSkin.MouseState.HOVER;
+            this.EnterBtn.Name = "EnterBtn";
+            this.EnterBtn.NoAccentTextColor = System.Drawing.Color.Empty;
+            this.EnterBtn.Padding = new System.Windows.Forms.Padding(10, 30, 10, 30);
+            this.EnterBtn.Size = new System.Drawing.Size(71, 36);
+            this.EnterBtn.TabIndex = 9;
+            this.EnterBtn.Text = "Войти";
+            this.EnterBtn.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            this.EnterBtn.UseAccentColor = false;
+            this.EnterBtn.UseVisualStyleBackColor = true;
+            this.EnterBtn.Click += new System.EventHandler(this.EnterBtn_Click_1);
+            // 
+            // Password
+            // 
+            this.Password.AllowPromptAsInput = true;
+            this.Password.AnimateReadOnly = false;
+            this.Password.AsciiOnly = false;
+            this.Password.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.Password.BeepOnError = false;
+            this.Password.CutCopyMaskFormat = System.Windows.Forms.MaskFormat.IncludeLiterals;
+            this.Password.Depth = 0;
+            this.Password.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.Password.HidePromptOnLeave = false;
+            this.Password.HideSelection = true;
+            this.Password.InsertKeyMode = System.Windows.Forms.InsertKeyMode.Default;
+            this.Password.LeadingIcon = null;
+            this.Password.Location = new System.Drawing.Point(206, 184);
+            this.Password.Mask = "";
+            this.Password.MaxLength = 32767;
+            this.Password.MouseState = MaterialSkin.MouseState.OUT;
+            this.Password.Name = "Password";
+            this.Password.PasswordChar = '\0';
+            this.Password.PrefixSuffixText = null;
+            this.Password.PromptChar = '_';
+            this.Password.ReadOnly = false;
+            this.Password.RejectInputOnFirstFailure = false;
+            this.Password.ResetOnPrompt = true;
+            this.Password.ResetOnSpace = true;
+            this.Password.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.Password.SelectedText = "";
+            this.Password.SelectionLength = 0;
+            this.Password.SelectionStart = 0;
+            this.Password.ShortcutsEnabled = true;
+            this.Password.Size = new System.Drawing.Size(250, 48);
+            this.Password.SkipLiterals = true;
+            this.Password.TabIndex = 10;
+            this.Password.TabStop = false;
+            this.Password.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.Password.TextMaskFormat = System.Windows.Forms.MaskFormat.IncludeLiterals;
+            this.Password.TrailingIcon = null;
+            this.Password.UseSystemPasswordChar = false;
+            this.Password.ValidatingType = null;
             // 
             // AdminLoginForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(612, 313);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.RestorePassword);
-            this.Controls.Add(this.EnterBtn);
-            this.Controls.Add(this.label2);
+            this.ClientSize = new System.Drawing.Size(538, 359);
             this.Controls.Add(this.Password);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.EnterBtn);
             this.Controls.Add(this.Login);
+            this.Controls.Add(this.materialLabel2);
+            this.Controls.Add(this.materialLabel1);
+            this.Controls.Add(this.RestorePassword);
             this.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "AdminLoginForm";
-            this.Text = "AdminLoginForm";
+            this.Text = "Форма входа администратора";
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-
-        private TextBox Login;
-        private Label label1;
-        private TextBox Password;
-        private Label label2;
-        private Button EnterBtn;
         private LinkLabel RestorePassword;
-        private Label label3;
+        private MaterialSkin.Controls.MaterialLabel materialLabel1;
+        private MaterialSkin.Controls.MaterialLabel materialLabel2;
+        private MaterialSkin.Controls.MaterialMaskedTextBox Login;
+        private MaterialSkin.Controls.MaterialButton EnterBtn;
+        private MaterialSkin.Controls.MaterialMaskedTextBox Password;
     }
 }

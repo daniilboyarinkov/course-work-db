@@ -1,15 +1,17 @@
 using System.Data.OleDb;
 using home_library.Static;
+using MaterialSkin;
+using MaterialSkin.Controls;
 
 namespace home_library
 {
 
-    public partial class StartForm : Form
+    public partial class StartForm : MaterialForm
     {
         public StartForm()
         {
             InitializeComponent();
-
+            
             // открываем соединение с бд
             Logic.Connection.Open();
         }
@@ -20,7 +22,21 @@ namespace home_library
             Logic.Connection.Close();
         }
 
-        private void UserButton_Click(object sender, EventArgs e)
+        private void AdminButton_Click(object sender, EventArgs e)
+        {
+            // переводим основное окно в состояние невидимости
+            Visible = false;
+
+
+            AdminLoginForm adminLoginForm = new();
+            adminLoginForm.ShowDialog();
+
+
+            // по закрытию дочернего окна закрываем и основное
+            Visible =true;
+        }
+
+        private void UserButton_Click_1(object sender, EventArgs e)
         {
             string inputName = UserName.Text.ToLower();
 
@@ -42,7 +58,7 @@ namespace home_library
 
                     userForm.ShowDialog();
                     Visible = true;
-                } 
+                }
                 else
                 {
                     MessageBox.Show($"Нет пользователя с именем {inputName}!", "Error!");
@@ -52,20 +68,5 @@ namespace home_library
 
             reader.Close();
         }
-
-        private void AdminButton_Click(object sender, EventArgs e)
-        {
-            // переводим основное окно в состояние невидимости
-            Visible = false;
-
-
-            AdminLoginForm adminLoginForm = new();
-            adminLoginForm.ShowDialog();
-
-
-            // по закрытию дочернего окна закрываем и основное
-            Visible =true;
-        }
-        
     }
 }

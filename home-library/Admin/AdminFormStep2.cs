@@ -2,12 +2,12 @@
 using home_library.Admin;
 using home_library.Extensions;
 using home_library.Static;
-using System.Data.OleDb;
+using MaterialSkin.Controls;
 using System.Text.RegularExpressions;
 
 namespace home_library
 {
-    public partial class AdminFormStep2 : Form
+    public partial class AdminFormStep2 : MaterialForm
     {
         private readonly string state;
         private readonly string action;
@@ -18,7 +18,7 @@ namespace home_library
             this.state = state;
             this.action = action;
 
-            Title.Text = $"{action.Capitalize()} {Admin.Admin.HardCodedIncline(state)}.";
+            Text = $"{action.Capitalize()} {Admin.Admin.HardCodedIncline(state)}.";
             SaveBtn.Text = action.Capitalize();
 
             //MessageBox.Show(state, action);

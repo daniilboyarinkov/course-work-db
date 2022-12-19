@@ -37,7 +37,7 @@
             // save_caution
             // 
             this.save_caution.AutoSize = true;
-            this.save_caution.Location = new System.Drawing.Point(61, 386);
+            this.save_caution.Location = new System.Drawing.Point(26, 386);
             this.save_caution.Name = "save_caution";
             this.save_caution.Size = new System.Drawing.Size(136, 15);
             this.save_caution.TabIndex = 0;
@@ -45,7 +45,7 @@
             // 
             // SaveBtn
             // 
-            this.SaveBtn.Location = new System.Drawing.Point(594, 369);
+            this.SaveBtn.Location = new System.Drawing.Point(583, 386);
             this.SaveBtn.Name = "SaveBtn";
             this.SaveBtn.Size = new System.Drawing.Size(166, 49);
             this.SaveBtn.TabIndex = 1;
@@ -63,7 +63,7 @@
             // 
             // groupBox1
             // 
-            this.groupBox1.Location = new System.Drawing.Point(32, 66);
+            this.groupBox1.Location = new System.Drawing.Point(26, 100);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(515, 263);
             this.groupBox1.TabIndex = 3;

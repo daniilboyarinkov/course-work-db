@@ -38,7 +38,7 @@
             // 
             this.ActionBtn.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.ActionBtn.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.ActionBtn.Location = new System.Drawing.Point(266, 341);
+            this.ActionBtn.Location = new System.Drawing.Point(74, 337);
             this.ActionBtn.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.ActionBtn.Name = "ActionBtn";
             this.ActionBtn.Size = new System.Drawing.Size(277, 31);
@@ -58,7 +58,7 @@
             this.DataGridUser.RowHeadersWidth = 51;
             this.DataGridUser.RowTemplate.Height = 29;
             this.DataGridUser.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.DataGridUser.Size = new System.Drawing.Size(653, 242);
+            this.DataGridUser.Size = new System.Drawing.Size(547, 242);
             this.DataGridUser.TabIndex = 4;
             // 
             // Title
@@ -73,7 +73,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(674, 414);
             this.Controls.Add(this.Title);
             this.Controls.Add(this.ActionBtn);
             this.Controls.Add(this.DataGridUser);

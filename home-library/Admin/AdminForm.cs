@@ -1,10 +1,11 @@
 ﻿
 using home_library.Admin;
 using home_library.Static;
+using MaterialSkin.Controls;
 
 namespace home_library
 {
-    public partial class AdminForm : Form
+    public partial class AdminForm : MaterialForm
     {
         private string[]? tables;
         public AdminForm()
@@ -58,24 +59,6 @@ namespace home_library
 
         private void RadioButton2_CheckedChanged(object sender, EventArgs e)
         { }
-
-        private void TakeAppliesBtn_Click(object sender, EventArgs e)
-        {
-            AdminHistoryForm adminHistory = new("take_applies");
-            adminHistory.ShowDialog();
-        }
-
-        private void HistoryBtn_Click_1(object sender, EventArgs e)
-        {
-            AdminHistoryForm adminHistory = new("history");
-            adminHistory.ShowDialog();
-        }
-
-        private void DeptBtn_Click(object sender, EventArgs e)
-        {
-            AdminHistoryForm adminHistory = new("dept");
-            adminHistory.ShowDialog();
-        }
 
         private void AddTableButton_Click(object sender, EventArgs e)
         {
@@ -153,6 +136,24 @@ namespace home_library
                 {
                 }
             }
+        }
+
+        private void historyBtn_Click(object sender, EventArgs e)
+        {
+            AdminHistoryForm adminHistory = new("history");
+            adminHistory.ShowDialog();
+        }
+
+        private void DeptBtn_Click_1(object sender, EventArgs e)
+        {
+            AdminHistoryForm adminHistory = new("dept");
+            adminHistory.ShowDialog();
+        }
+
+        private void TakeAppliesBtn_Click_1(object sender, EventArgs e)
+        {
+            AdminHistoryForm adminHistory = new("take_applies");
+            adminHistory.ShowDialog();
         }
     }
 }
