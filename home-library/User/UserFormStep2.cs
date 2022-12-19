@@ -1,6 +1,8 @@
 ﻿using home_library.Static;
 using home_library.User;
 using MaterialSkin.Controls;
+using Word = Microsoft.Office.Interop.Word;
+
 
 namespace home_library
 {
@@ -132,6 +134,63 @@ namespace home_library
             string book_publication_year = data[3];
 
             MessageBox.Show($"Очень интересная книга. {book_title} написана {book_fio} в {book_publication_year} г.");
+        }
+
+        public void TranslateTableToWord()
+        {
+            int row_count = DataGridUser.RowCount;
+            int col_count = DataGridUser.ColumnCount;
+            Word.Application wordApp = new Word.Application();
+            Word.Document wordDoc;
+            Word.Paragraph wordParag;
+            Word.Table wordTable;
+
+            //создаём новый документ Word и задаём параметры листа
+            wordDoc = wordApp.Documents.Add(Type.Missing, Type.Missing, Type.Missing, Type.Missing); //создаём документ Word
+
+            // первый параграф
+            wordParag = wordDoc.Paragraphs.Add(Type.Missing);
+            wordParag.Range.Font.Name = "Times New Roman";
+            wordParag.Range.Font.Size = 14;
+            wordParag.Range.Font.Bold = 1;
+            wordParag.Range.Text = step == "user_books"
+                ? $"Статистика книг на руках пользователя {User.User.Username}"
+                : $"История пользователя {User.User.Username}"; 
+            wordParag.Range.Paragraphs.Alignment = Word.WdParagraphAlignment.wdAlignParagraphCenter;
+
+            // второй параграф, таблица из 10 строк и 2 колонок
+            wordDoc.Paragraphs.Add(Type.Missing);
+            wordParag.Range.Tables.Add(wordParag.Range, row_count, col_count, Type.Missing, Type.Missing);
+            wordTable = wordDoc.Tables[1];
+            wordTable.Range.Font.Bold = 1;
+            wordTable.Range.Font.Size = 10;
+            wordTable.Borders.Enable = 1;
+
+            //задаём ширину колонок и высоту строк
+            wordTable.Columns.PreferredWidthType = Word.WdPreferredWidthType.wdPreferredWidthPoints;
+            wordTable.Columns[1].SetWidth(200f, Word.WdRulerStyle.wdAdjustNone);
+            wordTable.Rows.SetHeight(20f, Word.WdRowHeightRule.wdRowHeightExactly);
+            wordTable.Rows.Alignment = Word.WdRowAlignment.wdAlignRowCenter;
+            wordTable.Range.Cells.VerticalAlignment = Word.WdCellVerticalAlignment.wdCellAlignVerticalCenter;
+            wordTable.Range.Select();
+
+            //заполняем ячейки таблицы
+            for (int i = 1; i < row_count; i++)
+                for (int j = 1; j <= col_count; j++)
+                {
+                    var cell = DataGridUser.Rows[i - 1].Cells[j - 1];
+                    wordTable.Cell(i, j).Range.Text = cell.Value.ToString();
+                }
+            //сохраняем документ, закрываем документ, выходим из Word
+            wordDoc.SaveAs($"C:\\{step}_{User.User.Username}.doc");
+            wordApp.ActiveDocument.Close();
+            wordApp.Quit();
+            MessageBox.Show("Успех!", "Успех!");
+        }
+
+        private void materialButton1_Click(object sender, EventArgs e)
+        {
+            TranslateTableToWord();
         }
     }
 }

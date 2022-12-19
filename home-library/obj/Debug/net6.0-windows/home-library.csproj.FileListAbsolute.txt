@@ -195,3 +195,7 @@ C:\Users\sudlenia\Desktop\course-work-db\home-library\obj\Debug\net6.0-windows\h
 C:\Users\sudlenia\Desktop\course-work-db\home-library\obj\Debug\net6.0-windows\home-library.genruntimeconfig.cache
 C:\Users\sudlenia\Desktop\course-work-db\home-library\obj\Debug\net6.0-windows\ref\home-library.dll
 C:\Users\sudlenia\Desktop\course-work\course-work-db\home-library\bin\Debug\net6.0-windows\MaterialSkin.dll
+C:\Users\sudlenia\Desktop\course-work\course-work-db\home-library\obj\Debug\net6.0-windows\Interop.Microsoft.Office.Interop.Excel.dll
+C:\Users\sudlenia\Desktop\course-work\course-work-db\home-library\obj\Debug\net6.0-windows\Interop.Microsoft.Office.Core.dll
+C:\Users\sudlenia\Desktop\course-work\course-work-db\home-library\obj\Debug\net6.0-windows\Interop.Microsoft.Office.Interop.Word.dll
+C:\Users\sudlenia\Desktop\course-work\course-work-db\home-library\obj\Debug\net6.0-windows\home-library.csproj.ResolveComReference.cache
